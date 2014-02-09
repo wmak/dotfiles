@@ -7,5 +7,4 @@ setxkbmap -layout colemak	# set the keyboard layout
 
 xrdb -merge ~/.Xresources	# get urxvt to read .Xresources
 
-exec xmonad			# start xmonad
-exec google-chrome-stable	# start chrome
+exec xmonad | xmobar		# start xmonad
