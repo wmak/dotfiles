@@ -66,7 +66,7 @@ URxvt*shading:                          50
 ! URxvt*pointerColor2:                  color
 ! URxvt*borderColor:                    color
 ! URxvt*iconFile:                       file
-! URxvt*font:                          	ttf-anonymous-pro
+URxvt*font:                          	xft:Anonymous Pro:size=10
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
@@ -133,28 +133,28 @@ URxvt*keysym.End:                       \033[4~
 ! URxvt*tabbar-fg:                      colour
 ! URxvt*url-launcher:                   string
 !Black
-*.color0: #000000
+*.color0: #343844
 *.color8: #5D5D5D
  
 !Red
-*.color1: #F04C16
-*.color9: #E09690
+*.color1: #4D1B2F
+*.color9: #9E332E
  
 !Green
 *.color2: #8EB33B
 *.color10: #CDEE69
  
 !Yellow
-*.color3: #D0B03C
-*.color11: #FFE377
+*.color3: #FFCA50
+*.color11: #FC9D1C
  
 !Blue
-*.color4:  #313B4A
-*.color12: #4CB09C
+*.color4:  #79BD8F
+*.color12: #00A388
  
 !Magenta
-*.color5:  #C8A0D1
-*.color13: #FBB1F9
+*.color5:  #F57A82
+*.color13: #ED5276
  
 !Cyan
 *.color6:  #218693
@@ -165,7 +165,5 @@ URxvt*keysym.End:                       \033[4~
 *.color15: #F7F7F7
  
 *.background: #1B1B1B
-!*.colorBD: #99878D
-*.cursorColor: #218693
-!*.cursorColor2: #FFFFFF
-*.foreground: #F8F8F8
+*.cursorColor: #00FF00
+*.foreground: #FFFF9D
