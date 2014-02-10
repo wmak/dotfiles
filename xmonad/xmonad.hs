@@ -6,24 +6,16 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
 
-main = xmonad $ defaultConfig
-	{ terminal    		= myTerminal
-	, modMask     		= myModMask
-	, borderWidth 		= myBorderWidth
-	, normalBorderColor 	= "#4CB09C"
-	, focusedBorderColor	= "#F04C16"
-	, layoutHook		= myLayout
-	, manageHook		= myManageHook
-	, keys			= myKeys <+> keys defaultConfig
-	}
-
--- yes, these are functions; just very simple ones
--- that accept no input and return static values
 myTerminal	= "urxvt"
 myModMask	= mod4Mask -- Win key or Super_L
+-- border settings
 myBorderWidth	= 3
+normalColor	= "#4CB09C"
+focusedColor	= "#F04C16"
+-- make room for xmobar
 myLayout	= avoidStruts $ layoutHook defaultConfig
 myManageHook	= manageDocks <+> manageHook defaultConfig
+-- create colemak keybindings
 myKeys		 conf@(XConfig {XMonad.modMask = modm}) = M.fromList 
 		-- Move focus to the next window
 		[ ((modm, xK_n), windows W.focusDown)
@@ -38,3 +30,15 @@ myKeys		 conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 		-- Expand the master area
 		, ((modm, xK_i), sendMessage Expand)
 		]
+
+main = xmonad $ defaultConfig
+	{ terminal    		= myTerminal
+	, modMask     		= myModMask
+	, borderWidth 		= myBorderWidth
+	, normalBorderColor 	= normalColor
+	, focusedBorderColor	= focusedColor
+	, layoutHook		= myLayout
+	, manageHook		= myManageHook
+	, keys			= myKeys <+> keys defaultConfig
+	}
+
