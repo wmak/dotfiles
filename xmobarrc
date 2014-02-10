@@ -11,8 +11,10 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
 	, Run Swap [ ] 18000
 	, Run Date "%a %b %d %Y %H:%M:%S" "date" 10
 	, Run Battery ["-L", "30", "-H", "50", "--normal", "yellow", "--high", "green", "--low", "red", "-t", "Power: <left>"] 10
+	, Run Uptime [] 10
+	, Run ThermalZone 0 ["-t","inside: <temp>C","-L","50","-H","65","--normal","green","--high","red","--low","lightblue"] 30
 	]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%multicpu% | %memory% | %swap% | %wlp3s0wi% }{ %battery% | %CYYZ% | <fc=#EDBD1F>%date%</fc>"
+, template = "%multicpu% | %memory% | %swap% | %wlp3s0wi% | %uptime% }{ %battery% | %thermal0% | %CYYZ% | <fc=#EDBD1F>%date%</fc>"
 }
