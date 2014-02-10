@@ -66,7 +66,7 @@ URxvt*shading:                          50
 ! URxvt*pointerColor2:                  color
 ! URxvt*borderColor:                    color
 ! URxvt*iconFile:                       file
-! URxvt*font:                           fontname
+! URxvt*font:                          	ttf-anonymous-pro
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
@@ -101,12 +101,14 @@ URxvt*depth:                            32
 ! URxvt*secondaryScroll:                boolean
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
-! URxvt*perl-ext-common:                string
+URxvt*perl-ext-common:                  clipboard
 ! URxvt*perl-ext:                       string
-! URxvt*iso14755:                       boolean
+URxvt*iso14755:                         false 
 ! URxvt*iso14755_52:                    boolean
 ! URxvt*xrm:                            string
 ! URxvt*keysym.sym:                     keysym
+URxvt*keysym.C-C:                       perl:clipboard:copy
+URxvt.keysym.C-V:                       perl:clipboard:paste
 URxvt*keysym.Home:                      \033[1~
 URxvt*keysym.End:                       \033[4~
 ! URxvt*background.border:              boolean
@@ -135,7 +137,7 @@ URxvt*keysym.End:                       \033[4~
 *.color8: #5D5D5D
  
 !Red
-*.color1: #C75646
+*.color1: #F04C16
 *.color9: #E09690
  
 !Green
@@ -147,8 +149,8 @@ URxvt*keysym.End:                       \033[4~
 *.color11: #FFE377
  
 !Blue
-*.color4:  #72B3CC
-*.color12: #9CD9F0
+*.color4:  #313B4A
+*.color12: #4CB09C
  
 !Magenta
 *.color5:  #C8A0D1
