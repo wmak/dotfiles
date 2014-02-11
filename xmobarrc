@@ -10,7 +10,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
 	, Run Memory ["-t","Mem: <usedratio>%"] 10
 	, Run Swap [ ] 18000
 	, Run Date "%a %b %d %Y %H:%M:%S" "date" 10
-	, Run Battery ["-L", "30", "-H", "50", "--normal", "yellow", "--high", "green", "--low", "red", "-t", "Power: <left>"] 10
+	, Run Battery ["-L", "30", "-H", "50", "--normal", "yellow", "--high", "green", "--low", "red", "-t", "Power <acstatus>: <left>"] 10
 	, Run Uptime [] 10
 	, Run ThermalZone 0 ["-t","inside: <temp>C","-L","50","-H","65","--normal","green","--high","red","--low","lightblue"] 30
 	]
