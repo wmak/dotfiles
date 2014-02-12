@@ -1,8 +1,10 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+Config { font = "xft:Anonymous Pro:size=10" 
 , bgColor = "#313B4A"
 , fgColor = "#DBDBD0"
 , position = Top
 , lowerOnStart = True
+, border = NoBorder
+, hideOnStart = False
 , commands = 
 	[ Run Weather "CYYZ" ["-t","Outside: <tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
 	, Run Wireless "wlp3s0" ["-L","0","-H","30","--normal","red","--high","green", "-t", "wifi: <essid>@<quality>"] 30
