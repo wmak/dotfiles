@@ -18,17 +18,19 @@ myManageHook	= manageDocks <+> manageHook defaultConfig
 -- create colemak keybindings
 myKeys		 conf@(XConfig {XMonad.modMask = modm}) = M.fromList 
 		-- Move focus to the next window
-		[ ((modm, xK_n), windows W.focusDown)
+		[ ((modm, xK_e), windows W.focusDown)
 		-- Move focus to the previous window
-		, ((modm, xK_e), windows W.focusUp)
+		, ((modm, xK_i), windows W.focusUp)
 		-- Start program launcher
 		, ((modm, xK_r), spawn "dmenu_run")
 		-- Swap the focused window with the next window
-		, ((modm .|. shiftMask, xK_n), windows W.swapDown)
+		, ((modm .|. shiftMask, xK_e), windows W.swapDown)
 		-- Swap the focused window with the previous window
-		, ((modm .|. shiftMask, xK_e), windows W.swapUp)
+		, ((modm .|. shiftMask, xK_i), windows W.swapUp)
 		-- Expand the master area
-		, ((modm, xK_i), sendMessage Expand)
+		, ((modm, xK_o), sendMessage Expand)
+		-- Shrink the master area
+		, ((modm, xK_n), sendMessage Shrink)
 		]
 
 main = xmonad $ defaultConfig
