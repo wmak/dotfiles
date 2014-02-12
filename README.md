@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-my dotfiles
+William Mak's dotfiles
