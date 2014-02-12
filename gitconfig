@@ -1,0 +1,11 @@
+[user]
+	email = william.mak@hotmail.ca
+	name = wmak
+[push]
+	default = simple
+[url "git@github.com"]
+	insteadOf	= github
+[url "git@bitbucket.org"]
+	insteadOf	= bitbucket
+[core]
+	editor = "vim"
