@@ -1,11 +1,21 @@
 [user]
-	email = william.mak@hotmail.ca
-	name = wmak
+	email		= william.mak@hotmail.ca
+	name		= wmak
+
 [push]
-	default = simple
+	default		= simple
+
 [url "git@github.com"]
 	insteadOf	= github
+
 [url "git@bitbucket.org"]
 	insteadOf	= bitbucket
+
 [core]
-	editor = "vim"
+	editor		= "vim"
+
+[alias]
+	l			= log -n20
+	s			= status
+	a			= add
+	c			= commit
