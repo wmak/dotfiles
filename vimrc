@@ -19,6 +19,8 @@ set number
 
 " tell vim how many columns a tab is
 set tabstop=4
+set shiftwidth=4
+set smarttab
 
 " show whitespace characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
