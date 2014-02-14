@@ -3,8 +3,6 @@ ZSH=$HOME/.oh-my-zsh
 
 alias mathlab="ssh makwill1@mathlab.utsc.utoronto.ca"
 
-CASE_SENSITIVE="true"
-
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
