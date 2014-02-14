@@ -10,6 +10,10 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" highlight 81 and onward so 80 is the last valid column
+set textwidth=80
+set colorcolumn=+1
+
 " show line numbers
 set number
 
@@ -18,7 +22,6 @@ set tabstop=4
 
 " show whitespace characters
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-set list
 
 " tell vim I have a dark background
 set bg=dark
