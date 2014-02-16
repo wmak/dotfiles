@@ -1,1 +1,1 @@
-feh  --bg-fill '$HOME/Downloads/background.jpg' 
+feh  --bg-fill '/home/wmak/background.jpg' 
