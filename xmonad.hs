@@ -21,8 +21,6 @@ myKeys		 conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 		[ ((modm, xK_e), windows W.focusDown)
 		-- Move focus to the previous window
 		, ((modm, xK_i), windows W.focusUp)
-		-- Start program launcher
-		, ((modm, xK_r), spawn "dmenu_run")
 		-- Swap the focused window with the next window
 		, ((modm .|. shiftMask, xK_e), windows W.swapDown)
 		-- Swap the focused window with the previous window
