@@ -18,7 +18,7 @@ URxvt*scrollBar_right:                  false
 ! URxvt*inheritPixmap:                  boolean
 URxvt*transparent:                      true
 ! URxvt*tintColor:                      color
-URxvt*shading:                          20
+URxvt*shading:                          50
 ! URxvt*blurRadius:                     HxV
 ! URxvt*fading:                         number
 ! URxvt*fadeColor:                      color
