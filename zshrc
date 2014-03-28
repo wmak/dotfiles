@@ -6,7 +6,7 @@ alias murder="kill -9"
 alias die="kill -15"
 alias fuckinginternet="wicd-curses"
 
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
