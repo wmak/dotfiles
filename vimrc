@@ -31,8 +31,5 @@ set bg=dark
 " enters paste mode on F2
 set pastetoggle=<F2>
 
-" remap qq to be the escape 
-inoremap qq <ESC>
-
 " remap <F3> to show whitespace
 nnoremap <F3> :set list!<cr>
