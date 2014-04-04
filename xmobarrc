@@ -4,19 +4,17 @@ Config { font = "xft:Anonymous Pro:size=10"
 , position = Top
 , lowerOnStart = True
 , border = NoBorder
-, hideOnStart = False
+, borderColor = "#313B4A"
 , commands = 
 	[ Run Weather "CYYZ" ["-t","Outside: <tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
-	, Run Wireless "wlp3s0" ["-L","0","-H","30","--normal","red","--high","green", "-t", "wifi: <essid>@<quality>"] 30
 	, Run MultiCpu ["-L","3","-H","50","--normal","green","--high","red"] 10
 	, Run Memory ["-t","Mem: <usedratio>%"] 10
 	, Run Swap [ ] 18000
 	, Run Date "%a %b %d %Y %H:%M:%S" "date" 10
-	, Run Battery ["-L", "30", "-H", "50", "--normal", "yellow", "--high", "green", "--low", "red", "-t", "Power <acstatus>: <left>"] 10
 	, Run Uptime [] 10
-	, Run ThermalZone 0 ["-t","inside: <temp>C","-L","50","-H","65","--normal","green","--high","red","--low","lightblue"] 30
+	, Run ThermalZone 0 ["-t","Inside: <temp>C","-L","50","-H","65","--normal","green","--high","red","--low","lightblue"] 30
 	]
 , sepChar = "%"
 , alignSep = "}{"
-, template = "%multicpu% | %memory% | %swap% | %wlp3s0wi% | %uptime% }{ %battery% | %thermal0% | %CYYZ% | <fc=#EDBD1F>%date%</fc>"
+, template = "%multicpu% | %memory% | %swap% | %uptime% }{ %thermal0% | %CYYZ% | <fc=#EDBD1F>%date%</fc>"
 }
