@@ -14,7 +14,7 @@ Config { font = "xft:Anonymous Pro:size=10"
 	, Run Date "%a %b %d %Y %H:%M:%S" "date" 10
 	, Run Battery ["-L", "30", "-H", "50", "--normal", "yellow", "--high", "green", "--low", "red", "-t", "Power <acstatus>: <left>"] 10
 	, Run Uptime [] 10
-	, Run ThermalZone 0 ["-t","inside: <temp>C","-L","50","-H","65","--normal","green","--high","red","--low","lightblue"] 30
+	, Run ThermalZone 0 ["-t","Inside: <temp>C","-L","50","-H","65","--normal","green","--high","red","--low","lightblue"] 30
 	]
 , sepChar = "%"
 , alignSep = "}{"
