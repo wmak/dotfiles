@@ -33,3 +33,6 @@ set pastetoggle=<F2>
 
 " remap <F3> to show whitespace
 nnoremap <F3> :set list!<cr>
+
+" recognize that md is markdown not modula
+au BufRead,BufNewFile *.md set filetype=markdown
