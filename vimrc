@@ -28,6 +28,9 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " tell vim I have a dark background
 set bg=dark
 
+" Use qq to escape
+inoremap qq <ESC>
+
 " enters paste mode on F2
 set pastetoggle=<F2>
 
