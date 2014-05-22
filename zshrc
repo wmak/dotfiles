@@ -1,10 +1,10 @@
 ZSH=$HOME/.oh-my-zsh
-# ZSH_THEME=
 
 alias mathlab="ssh makwill1@mathlab.utsc.utoronto.ca"
 alias murder="kill -9"
 alias die="kill -15"
 alias fuckinginternet="wicd-curses"
+alias cleanup="sudo pacman -Rscn $(pacman -Qtdq) && sudo pacman-optimize && sync"
 
 plugins=(git)
 
@@ -19,3 +19,4 @@ PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 cd $HOME/development
+
