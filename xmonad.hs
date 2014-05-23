@@ -1,22 +1,26 @@
 import XMonad
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.InsertPosition
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
 
-myTerminal	= "urxvt"
-myModMask	= mod4Mask -- Win key or Super_L
+myTerminal = "urxvt"
+myModMask = mod4Mask -- Win key or Super_L
 -- border settings
-myBorderWidth	= 3
-normalColor	= "#4CB09C"
-focusedColor	= "#F04C16"
+myBorderWidth = 3
+normalColor = "#225378"
+focusedColor = "#EB7F00"
 -- make room for xmobar
-myLayout	= avoidStruts $ layoutHook defaultConfig
-myManageHook	= manageDocks <+> manageHook defaultConfig
+myLayout = avoidStruts $ layoutHook defaultConfig
+myManageHook = insertPosition End Newer <+> manageDocks 
+	<+> manageHook defaultConfig
+-- setup workspaces
+myWorkspaces = ["main", "work", "msg"] ++ map show [4..9]
 -- create colemak keybindings
-myKeys		 conf@(XConfig {XMonad.modMask = modm}) = M.fromList 
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList 
 		-- Move focus to the next window
 		[ ((modm, xK_e), windows W.focusDown)
 		-- Move focus to the previous window
@@ -32,13 +36,13 @@ myKeys		 conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 		]
 
 main = xmonad $ defaultConfig
-	{ terminal    		= myTerminal
-	, modMask     		= myModMask
-	, borderWidth 		= myBorderWidth
-	, normalBorderColor 	= normalColor
-	, focusedBorderColor	= focusedColor
-	, layoutHook		= myLayout
-	, manageHook		= myManageHook
-	, keys			= myKeys <+> keys defaultConfig
+	{ terminal = myTerminal
+	, modMask = myModMask
+	, borderWidth = myBorderWidth
+	, normalBorderColor = normalColor
+	, focusedBorderColor = focusedColor
+	, layoutHook = myLayout
+	, manageHook = myManageHook
+	, keys = myKeys <+> keys defaultConfig
 	}
 
