@@ -4,7 +4,7 @@ alias mathlab="ssh makwill1@mathlab.utsc.utoronto.ca"
 alias murder="kill -9"
 alias die="kill -15"
 alias fuckinginternet="wicd-curses"
-alias cleanup="sudo pacman -Rscn $(pacman -Qtdq) && sudo pacman-optimize && sync"
+alias cleanup="sudo pacman -Sc && sudo pacman-optimize && sync"
 
 plugins=(git)
 
