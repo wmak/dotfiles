@@ -10,7 +10,7 @@ import XMonad.Prompt.XMonad
 myTerminal = "urxvt"
 myModMask = mod4Mask -- Win key or Super_L
 -- border settings
-myBorderWidth = 3
+myBorderWidth = 2
 normalColor = "#225378"
 focusedColor = "#EB7F00"
 -- make room for xmobar
