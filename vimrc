@@ -45,3 +45,13 @@ set incsearch
 
 " recognize that md is markdown not modula
 au BufRead,BufNewFile *.md set filetype=markdown
+
+" statusline.
+set laststatus=2
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+
+if version >= 700
+	hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+	au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=blue
+	au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+endif
