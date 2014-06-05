@@ -48,7 +48,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 " statusline.
 set laststatus=2
-set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L
 
 if version >= 700
 	hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
