@@ -40,7 +40,10 @@ Config { font = "xft:Anonymous Pro:size=10"
 		"--normal", "yellow", 
 		"--high", "green", 
 		"--low", "red", 
-		"-t", "Power <acstatus>: <left>"]
+		"-t", "<acstatus>: <left>%",
+		"--",
+		"-o", "Discharging",
+		"-O", "Charging"]
 		 10
 	, Run Uptime [] 10
 	, Run ThermalZone 0 
