@@ -15,7 +15,7 @@ Config { font = "xft:Anonymous Pro:size=10"
 	, Run Battery ["-L", "30", "-H", "50", "--normal", "yellow", "--high", "green", "--low", "red", "-t", "Power <acstatus>: <left>"] 10
 	, Run Uptime [] 10
 	, Run ThermalZone 0 ["-t","Inside: <temp>C","-L","50","-H","65","--normal","green","--high", "#EB7F00","--low","#ACF0F2"] 30
-	, Run DiskU [("/", "<usedp>/<size>"), ("sdb2", "<usedbar>")] ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 20
+	, Run DiskU [("/home", "Disk Usage:<usedp>%")] ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 20
 	]
 , sepChar = "%"
 , alignSep = "}{"
