@@ -1,11 +1,12 @@
-Config { font = "xft:Anonymous Pro:size=10" 
-, bgColor = "#225378"
-, fgColor = "#F3FFE2"
-, position = Top
-, lowerOnStart = True
-, borderColor = "#1695A3"
-, hideOnStart = False
-, commands = 
+Config { 
+font = "xft:Anonymous Pro:size=10",
+bgColor = "#225378",
+fgColor = "#F3FFE2",
+position = Top,
+lowerOnStart = True,
+borderColor = "#1695A3",
+hideOnStart = False,
+commands = 
 	[ Run Weather "CYYZ" 
 		["-t","Outside: <tempC>C",
 		"-L","18",
@@ -13,28 +14,31 @@ Config { font = "xft:Anonymous Pro:size=10"
 		"--normal","green",
 		"--high","#EB7F00",
 		"--low","#ACF0F2"] 
-		36000
-	, Run Wireless "wlp3s0" 
+		36000,
+	Run Wireless "wlp3s0" 
 		["-L","0",
 		"-H","30",
 		"--normal","red",
 		"--high","green", 
 		"-t", "wifi: <essid>@<quality>"] 
-		30
-	, Run MultiCpu 
+		30,
+	Run MultiCpu 
 		["-L","3",
 		"-H","50",
 		"--normal","green",
 		"--high","#EB7F00"] 
-		10
-	, Run Memory 
-		["-t","Mem: <usedratio>%"] 
-		10
-	, Run Swap 
-		[ ] 
-		18000
-	, Run Date "%a %b %d %Y %H:%M:%S" "date" 10
-	, Run BatteryP ["BAT0"] 
+		10,
+	Run Memory 
+		["-t","RAM: <usedratio>%"] 
+		10,
+	Run Swap 
+		["-t","SWP: <usedratio>%"] 
+		18000,
+	Run Date 
+		"%a %b %d %Y %H:%M:%S" 
+		"date" 
+		10,
+	Run BatteryP ["BAT0"] 
 		["-L", "30", 
 		"-H", "50", 
 		"--normal", "yellow", 
@@ -44,24 +48,26 @@ Config { font = "xft:Anonymous Pro:size=10"
 		"--",
 		"-o", "Discharging",
 		"-O", "Charging"]
-		 10
-	, Run Uptime [] 10
-	, Run ThermalZone 0 
+		 10,
+	Run Uptime 
+		[] 
+		10,
+	Run ThermalZone 0 
 		["-t","Inside: <temp>C",
 		"-L","50",
 		"-H","65",
 		"--normal","green",
 		"--high", "#EB7F00",
 		"--low","#ACF0F2"]
-		 30
-	, Run DiskU [("/home", "Disk Usage:<usedp>%")] 
+		 30,
+	Run DiskU [("/home", "HDD:<usedp>%")] 
 		["-L", "20", 
 		"-H", "50", 
 		"-m", "1", 
 		"-p", "3"] 
 		20
-	]
-, sepChar = "%"
-, alignSep = "}{"
-, template = "%multicpu% | %memory% | %swap% | %wlp3s0wi% | %uptime% | %disku% }{ %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
+	],
+sepChar = "%",
+alignSep = "}{",
+template = "%multicpu% | %memory% | %swap% | %disku% | %wlp3s0wi% | %uptime% }{ %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
 }
