@@ -47,6 +47,7 @@ commands =
 		"-t", "<acstatus>: <left>%",
 		"--",
 		"-o", "Discharging",
+		"-i", "Charging",
 		"-O", "Charging"]
 		 10,
 	Run Uptime 
@@ -60,7 +61,7 @@ commands =
 		"--high", "#EB7F00",
 		"--low","#ACF0F2"]
 		 30,
-	Run DiskU [("/home", "HDD:<usedp>%")] 
+	Run DiskU [("/home", "HDD: <usedbar>")] 
 		["-L", "20", 
 		"-H", "50", 
 		"-m", "1", 
