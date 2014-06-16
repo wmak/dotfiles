@@ -1,63 +1,49 @@
-URxvt*scrollBar:                        false
-URxvt*scrollBar_right:                  false 
-URxvt*transparent:                      true
-URxvt*shading:                          70
-URxvt*font:                          	xft:Anonymous Pro:size=10
-URxvt*depth:                            32
-URxvt*perl-ext-common:                  clipboard
-URxvt*iso14755:                         false
-URxvt*keysym.C-C:                       perl:clipboard:copy
-URxvt.keysym.C-V:                       perl:clipboard:paste
-URxvt*keysym.Home:                      \033[1~
-URxvt*keysym.End:                       \033[4~
+URxvt*scrollBar:		false
+URxvt*scrollBar_right:	false 
+URxvt*transparent:		true
+URxvt*shading:			50
+URxvt*font:				xft:inconsolata-g:style=Regular:size=10:antialias=true:hinting=true
+URxvt*letterSpace:		-1.5
+URxvt*depth:			32
+URxvt*perl-ext-common:	clipboard
+URxvt*iso14755:			false
+URxvt*keysym.C-C:		perl:clipboard:copy
+URxvt.keysym.C-V:		perl:clipboard:paste
+URxvt*keysym.Home:		\033[1~
+URxvt*keysym.End:		\033[4~
 
-!TomorrowNightEighties
-#define t_background        #2d2d2d
-#define t_current_line      #393939
-#define t_selection      	#515151
-#define t_foreground      	#cccccc
-#define t_comment	     	#999999
-#define t_red		     	#f2777a
-#define t_orange	     	#f99157
-#define t_yellow        	#ffcc66
-#define t_green	        	#99cc99
-#define t_aqua	        	#66cccc
-#define t_blue	        	#6699cc
-#define t_purple        	#cc99cc
-
-
-*.foreground:   t_foreground
-*.background:   t_background
-*.cursorColor:  #aeafad
+*.foreground:   #FFFFFF
+*.background:   #242424
+*.cursorColor:  #AEAFAD
 
 ! Black / Grey
 *.color0:       #000000
-*.color8:       #666666
+*.color8:       #5D5D5D
 
 ! Red / Bright Red
-*.color1:       t_red
-*.color9:       #FF3334
+*.color1:       #C75646
+*.color9:       #E09690
 
 ! Green + Bright Green
-*.color2:       t_green
-*.color10:      #9ec400
+*.color2:       #8EB33B
+*.color10:      #CDEE69
 
 ! Yellow (Orange) + Bright Yellow (Yellow)
-*.color3:       t_orange
-*.color11:      t_yellow
+*.color3:       #D0B03C
+*.color11:      #FFE377
 
 ! Blue + Bright Blue
-*.color4:       t_blue
-*.color12:      t_blue
+*.color4:       #72B3CC
+*.color12:      #9CD9F0
 
 ! Magenta (Purple) + Bright Magenta
-*.color5:       t_purple
-*.color13:      #b777e0
+*.color5:       #C8A0D1
+*.color13:      #FBB1F9
 
 ! Cyan (Aqua) + Bright Cyan
-*.color6:       t_aqua
-*.color14:      #54ced6
+*.color6:       #218693
+*.color14:      #77DFD8
 
 ! Light Grey (Selection) + White (Current Line)
-*.color7:       t_selection
-*.color15:      t_current_line
+*.color7:       #B0B0B0
+*.color15:      #F7F7F7
