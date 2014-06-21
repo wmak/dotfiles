@@ -6,8 +6,8 @@ position = Top,
 lowerOnStart = True,
 borderColor = "#446666",
 hideOnStart = False,
-commands = 
-	[ Run Weather "CYYZ" 
+commands = [
+	Run Weather "CYYZ" 
 		["-t","Outside: <tempC>C",
 		"-L","18",
 		"-H","25",
@@ -26,14 +26,12 @@ commands =
 		["-L","3",
 		"-H","50",
 		"--normal","green",
-		"--high","#EB7F00"] 
+		"--high","#EB7F00",
+		"-t", "CPU: <bar>"]
 		10,
 	Run Memory 
-		["-t","RAM: <usedratio>%"] 
+		["-t","RAM: <usedbar>"] 
 		10,
-	Run Swap 
-		["-t","SWP: <usedratio>%"] 
-		18000,
 	Run Date 
 		"%a %b %d %Y %H:%M:%S" 
 		"date" 
@@ -66,9 +64,13 @@ commands =
 		"-H", "50", 
 		"-m", "1", 
 		"-p", "3"] 
-		20
+		20,
+	Run Com "/home/wmak/.pinger"
+		[]
+		"ping"
+		5
 	],
 sepChar = "%",
 alignSep = "}{",
-template = "%multicpu% | %memory% | %swap% | %disku% | %wlp3s0wi% | %uptime% }{ %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
+template = "%multicpu% | %memory% | %disku% | %ping% | %uptime% }{ %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
 }

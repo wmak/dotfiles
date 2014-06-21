@@ -1,0 +1,11 @@
+#!/bin/sh
+
+rtt=$(ping -c 3 74.125.226.131 | grep rtt | grep -o '[0-9]\+\.[0-9]\+' | sed -n 2p)
+if [ ! -z $rtt ] 
+then
+	echo "RSP: <fc=#00FF00>$rtt</fc> ms"
+else
+	echo "RSP: ∞ ms"
+fi
+
+exit 0
