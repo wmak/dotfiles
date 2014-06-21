@@ -1,10 +1,10 @@
 Config { 
-font = "xft:Anonymous Pro:size=10",
-bgColor = "#225378",
-fgColor = "#F3FFE2",
+font = "xft:inconsolata-g:style=Regular:size=8:antialias=true:hinting=true",
+bgColor = "#131D21",
+fgColor = "#B3C7C7",
 position = Top,
 lowerOnStart = True,
-borderColor = "#1695A3",
+borderColor = "#446666",
 hideOnStart = False,
 commands = 
 	[ Run Weather "CYYZ" 
@@ -12,7 +12,7 @@ commands =
 		"-L","18",
 		"-H","25",
 		"--normal","green",
-		"--high","#EB7F00",
+		"--high","#FF0000",
 		"--low","#ACF0F2"] 
 		36000,
 	Run Wireless "wlp3s0" 
