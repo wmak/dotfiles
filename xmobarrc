@@ -68,7 +68,7 @@ commands = [
 	Run Com "/home/wmak/.pinger"
 		[]
 		"ping"
-		5
+		30
 	],
 sepChar = "%",
 alignSep = "}{",
