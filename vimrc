@@ -46,6 +46,10 @@ set incsearch
 " recognize that md is markdown not modula
 au BufRead,BufNewFile *.md set filetype=markdown
 
+" vim-latexsuite
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+
 " statusline.
 set laststatus=2
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L
