@@ -6,6 +6,7 @@ alias murder="kill -9"
 alias die="kill -15"
 alias fuckinginternet="wicd-curses"
 alias cleanup="sudo pacman -Sc && sudo pacman-optimize && sync"
+alias pdf="texi2pdf --build-dir=.t2d"
 
 plugins=(git)
 
