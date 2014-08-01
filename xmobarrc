@@ -8,7 +8,7 @@ borderColor = "#446666",
 hideOnStart = False,
 commands = [
 	Run Weather "CYYZ" 
-		["-t","Outside: <tempC>C",
+		["-t","Outside: <tempC>°C",
 		"-L","18",
 		"-H","25",
 		"--normal","green",
@@ -52,7 +52,7 @@ commands = [
 		[] 
 		10,
 	Run ThermalZone 0 
-		["-t","Inside: <temp>C",
+		["-t","Inside: <temp>°C",
 		"-L","50",
 		"-H","65",
 		"--normal","green",
