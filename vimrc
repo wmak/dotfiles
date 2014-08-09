@@ -60,3 +60,6 @@ if version >= 700
 	au InsertEnter * hi StatusLine term=reverse ctermfg=7 gui=undercurl guisp=blue
 	au InsertLeave * hi StatusLine term=reverse ctermfg=0 gui=bold,reverse
 endif
+
+" go fmt
+nnoremap <F4> :w<cr>:!go fmt % <cr>:edit<cr>
