@@ -1,6 +1,6 @@
 URxvt*scrollBar:		false
 URxvt*scrollBar_right:	false 
-URxvt*transparent:		true
+URxvt*transparent:		false
 URxvt*shading:			50
 URxvt*font:				xft:inconsolata-g:style=Regular:size=10:antialias=true:hinting=true
 URxvt*letterSpace:		-1.5
@@ -13,37 +13,37 @@ URxvt*keysym.Home:		\033[1~
 URxvt*keysym.End:		\033[4~
 
 *.foreground:   #FFFFFF
-*.background:   #242424
-*.cursorColor:  #AEAFAD
+*.background:   #212121
+*.cursorColor:  #F8BBD0
 
 ! Black / Grey
 *.color0:       #000000
-*.color8:       #5D5D5D
+*.color8:       #BDBDBD
 
 ! Red / Bright Red
-*.color1:       #C75646
-*.color9:       #E09690
+*.color1:       #E51C23
+*.color9:       #FF2D6F
 
 ! Green + Bright Green
-*.color2:       #8EB33B
-*.color10:      #CDEE69
+*.color2:       #259B24
+*.color10:      #14E715
 
 ! Yellow (Orange) + Bright Yellow (Yellow)
-*.color3:       #D0B03C
-*.color11:      #FFE377
+*.color3:       #FF9800
+*.color11:      #FFEA00
 
 ! Blue + Bright Blue
-*.color4:       #72B3CC
-*.color12:      #9CD9F0
+*.color4:       #5677FC
+*.color12:      #03A9F4
 
 ! Magenta (Purple) + Bright Magenta
-*.color5:       #C8A0D1
-*.color13:      #FBB1F9
+*.color5:       #4A148C
+*.color13:      #9C27B0
 
 ! Cyan (Aqua) + Bright Cyan
-*.color6:       #218693
-*.color14:      #77DFD8
+*.color6:       #00BCD4
+*.color14:      #00E5FF
 
 ! Light Grey (Selection) + White (Current Line)
-*.color7:       #B0B0B0
-*.color15:      #F7F7F7
+*.color7:       #BDBDBD
+*.color15:      #FAFAFA

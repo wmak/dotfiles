@@ -1,7 +1,7 @@
 Config { 
 font = "xft:inconsolata-g:style=Regular:size=8:antialias=true:hinting=true",
-bgColor = "#131D21",
-fgColor = "#B3C7C7",
+bgColor = "#4E6CEF",
+fgColor = "#AFBFFF",
 position = Top,
 lowerOnStart = True,
 borderColor = "#446666",

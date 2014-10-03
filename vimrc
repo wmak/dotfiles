@@ -56,9 +56,9 @@ set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L
 
 " coloured statusline
 if version >= 700
-	hi StatusLine term=reverse ctermfg=0 ctermbg=3 gui=bold,reverse
-	au InsertEnter * hi StatusLine term=reverse ctermfg=7 gui=undercurl guisp=blue
-	au InsertLeave * hi StatusLine term=reverse ctermfg=0 gui=bold,reverse
+	hi StatusLine term=reverse ctermfg=5 ctermbg=3 gui=bold,reverse
+	au InsertEnter * hi StatusLine term=reverse ctermfg=4 gui=undercurl guisp=blue
+	au InsertLeave * hi StatusLine term=reverse ctermfg=5 gui=bold,reverse
 endif
 
 " go fmt
