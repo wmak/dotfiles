@@ -10,6 +10,7 @@ xrdb -merge ~/.Xresources	# get urxvt to read .Xresources
 xbindkeys &			# bind keys
 xset -b				# disable the system beep
 xmobar &			# start xmobar
+xbacklight -set 80	# preset the brightness to something nicer
 google-chrome-stable & # run google chrome
 urxvt -T Terminal & # run a terminal
 
