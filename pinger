@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rtt=$(ping -c 2 google.com | grep rtt | grep -o '[0-9]\+\.[0-9]\+' | sed -n 2p)
+rtt=$(ping -c 2 192.168.0.1 | grep rtt | grep -o '[0-9]\+\.[0-9]\+' | sed -n 2p)
 if [ ! -z $rtt ] 
 then
 	int=$(printf '%.0f\n' $rtt)
