@@ -1,10 +1,10 @@
 Config { 
-font = "xft:inconsolata-g:style=Regular:size=8:antialias=true:hinting=true",
-bgColor = "#4E6CEF",
-fgColor = "#AFBFFF",
-position = Top,
+font = "xft:roboto:style=Regular:size=8:antialias=true:hinting=true",
+bgColor = "#212121",
+fgColor = "#e0e0e0",
+position = Static{xpos=0, ypos=0, width=1440, height=12},
 lowerOnStart = True,
-borderColor = "#446666",
+borderColor = "#4E6CEF",
 hideOnStart = False,
 commands = [
 	Run Weather "CYYZ" 
@@ -27,10 +27,13 @@ commands = [
 		"-H","50",
 		"--normal","green",
 		"--high","#EB7F00",
-		"-t", "CPU: <bar>"]
+		"-t", "CPU: <total>%"]
 		10,
 	Run Memory 
-		["-t","RAM: <usedbar>"] 
+		["-t","RAM: <usedratio>%"] 
+		10,
+	Run Swap
+		["-t","SWP: <usedratio>%"] 
 		10,
 	Run Date 
 		"%a %b %d %Y %H:%M:%S" 
@@ -59,7 +62,7 @@ commands = [
 		"--high", "#EB7F00",
 		"--low","#ACF0F2"]
 		 30,
-	Run DiskU [("/home", "HDD: <usedbar>")] 
+	Run DiskU [("/home", "HDD: <usedp>%")] 
 		["-L", "20", 
 		"-H", "50", 
 		"-m", "1", 
@@ -72,5 +75,5 @@ commands = [
 	],
 sepChar = "%",
 alignSep = "}{",
-template = "%multicpu% | %memory% | %disku% | %ping% | %uptime% }{ %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
+template = "%multicpu% | %memory% %swap% | %disku% | %ping% | %uptime% }{ %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
 }
