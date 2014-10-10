@@ -6,15 +6,17 @@ import qualified Data.Map as M
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
+import XMonad.Layout.Spacing -- Add padding
 
 myTerminal = "urxvt"
 myModMask = mod4Mask -- Win key or Super_L
 -- border settings
 myBorderWidth = 2
-normalColor = "#e0e0e0"
+normalColor = "#757575"
 focusedColor = "#212121"
 -- make room for xmobar
-myLayout = avoidStruts $ layoutHook defaultConfig
+myLayout = avoidStruts $ spacing 5 $ layoutHook $ defaultConfig
+
 myManageHook = insertPosition End Newer <+> manageDocks 
 	<+> manageHook defaultConfig
 -- setup workspaces
@@ -33,6 +35,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 		, ((modm, xK_o), sendMessage Expand)
 		-- Shrink the master area
 		, ((modm, xK_n), sendMessage Shrink)
+		-- toggle gaps
+		, ((modm, xK_b), sendMessage ToggleStruts)
 		]
 
 main = xmonad $ defaultConfig

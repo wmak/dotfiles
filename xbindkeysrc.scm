@@ -56,7 +56,7 @@
     XF86Launch1 
 
 #Max Brightness
-"xbacklight -set 100"
+"xbacklight -set 80"
     m:0x0 + c:233
     XF86MonBrightnessUp 
 

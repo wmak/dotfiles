@@ -13,7 +13,7 @@ alias cleanup="sudo pacman -Sc && sudo pacman-optimize && sync"
 alias pdf="texi2pdf --build-dir=.t2d"
 alias cd="workspace_cd"
 
-plugins=(git vi-mode)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
