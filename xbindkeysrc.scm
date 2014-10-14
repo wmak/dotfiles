@@ -75,5 +75,20 @@
     m:0x4 + c:232
     Control + XF86MonBrightnessDown 
 
+#Screenshot
+"scrot /home/wmak/.screenshot.png && imgur /home/wmak/.screenshot.png"
+    m:0xc + c:12
+    Control+Alt + 3 
+
+#Select Screenshot
+"sleep 0.5 && scrot -s /home/wmak/.screenshot.png && imgur /home/wmak/.screenshot.png"
+    m:0xc + c:10
+    Control+Alt + 1 
+
+#Screenshot Window
+"scrot -u /home/wmak/.screenshot.png && imgur /home/wmak/.screenshot.png"
+    m:0xc + c:11
+    Control+Alt + 2 
+
 #
 # End of xbindkeys configuration
