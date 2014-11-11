@@ -63,3 +63,7 @@ endif
 
 " go fmt
 nnoremap <F4> :w<cr>:!go fmt % <cr>:edit<cr>
+
+" Word count
+command! -count=0 -nargs=0 WC <count>,$w ! wc -w
+command! -range=% -nargs=0 WC <line1>,<line2>w ! wc -w
