@@ -11,7 +11,7 @@ xbindkeys &			# bind keys
 xset -b				# disable the system beep
 xmobar &			# start xmobar
 xbacklight -set 80	# preset the brightness to something nicer
-google-chrome-stable & # run google chrome
+google-chrome-beta & # run google chrome
 urxvt -T Terminal & # run a terminal
 
 exec xmonad			# start xmonad
