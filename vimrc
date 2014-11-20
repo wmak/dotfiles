@@ -110,3 +110,9 @@ set wildignore+=tmp/**                  " anything that is temporary
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.bmp
 " }}}
+
+" Persistent History, Oh baby!
+if has("persistent_undo")
+    set undodir=~/.vim/backups
+    set undofile
+endif
