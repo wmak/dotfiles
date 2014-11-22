@@ -51,7 +51,7 @@
     XF86AudioMicMute 
 
 #Chrome
-"google-chrome-stable &"
+"google-chrome-beta &"
     m:0x0 + c:156
     XF86Launch1 
 
