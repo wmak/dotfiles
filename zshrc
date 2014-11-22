@@ -138,4 +138,9 @@ precmd() {
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #}}}
 
+# dircolors config. {{{
+eval `dircolors -b $HOME/dotfiles/dircolors.conf`
+#}}}
+
+# If there's a development folder cd to it.
 [[ -e $HOME/development ]] && cd $HOME/development
