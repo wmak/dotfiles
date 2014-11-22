@@ -2,13 +2,13 @@ URxvt*scrollBar:		false
 URxvt*scrollBar_right:	false 
 URxvt*transparent:		false
 URxvt*shading:			50
-URxvt*font:				xft:inconsolata-g:style=Regular:size=10:antialias=true:hinting=true
+URxvt*font:				xft:inconsolata-g:style=Regular:size=11.5:antialias=true:hinting=true
 URxvt*letterSpace:		-1.5
 URxvt*depth:			32
 URxvt*perl-ext-common:	clipboard
 URxvt*iso14755:			false
 URxvt*keysym.C-C:		perl:clipboard:copy
-URxvt.keysym.C-V:		perl:clipboard:paste
+URxvt*keysym.C-V:		perl:clipboard:paste
 URxvt*keysym.Home:		\033[1~
 URxvt*keysym.End:		\033[4~
 
