@@ -15,6 +15,11 @@ alias fuckinginternet="wicd-curses"
 alias cleanup="sudo pacman -Sc && sudo pacman-optimize && sync"
 alias pdf="texi2pdf --build-dir=.t2d"
 alias g="git"
+
+function cdls(){
+	cd $@ && ls
+}
+alias cl="cdls"
 # }}}
 
 # autoloads {{{
