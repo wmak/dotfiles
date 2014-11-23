@@ -1,0 +1,14 @@
+#!/bin/sh
+
+int=$(yaourt -Qu | wc -l)
+if [ $int -gt 30 ]
+then
+	echo "UPD: <fc=#FF0000>$int</fc>"
+elif [ $int -gt 15 ]
+then
+	echo "UPD: <fc=#FFFF00>$int</fc>"
+else
+	echo "UPD: <fc=#00FF00>$int</fc>"
+fi
+
+exit 0

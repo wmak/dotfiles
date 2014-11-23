@@ -72,6 +72,10 @@ commands = [
 		[]
 		"ping"
 		60,
+	Run Com "/home/wmak/dotfiles/updates"
+		[]
+		"updates"
+		36000,
 	Run Com "/home/wmak/dotfiles/backlight"
 		[]
 		"bright"
@@ -79,5 +83,5 @@ commands = [
 	],
 sepChar = "%",
 alignSep = "}{",
-template = "%multicpu% | %memory% %swap% | %disku% | %ping% | %uptime% }{ %bright% | %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
+template = "%multicpu% | %memory% %swap% | %disku% | %ping% | %uptime% | %updates% }{ %bright% | %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
 }
