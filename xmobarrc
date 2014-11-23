@@ -68,16 +68,16 @@ commands = [
 		"-m", "1", 
 		"-p", "3"] 
 		20,
-	Run Com "/home/wmak/.pinger"
+	Run Com "/home/wmak/dotfiles/pinger"
 		[]
 		"ping"
-		30,
-	Run Com "/home/wmak/.updates"
+		60,
+	Run Com "/home/wmak/dotfiles/backlight"
 		[]
-		"updates"
-		43200
+		"bright"
+		10
 	],
 sepChar = "%",
 alignSep = "}{",
-template = "%multicpu% | %memory% %swap% | %disku% | %ping% | %uptime% | %updates%}{ %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
+template = "%multicpu% | %memory% %swap% | %disku% | %ping% | %uptime% }{ %bright% | %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
 }

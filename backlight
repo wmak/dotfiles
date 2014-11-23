@@ -1,0 +1,14 @@
+#!/bin/sh
+
+int=$(printf '%.0f\n' `xbacklight -get`)
+if [ $int -lt 30 ]
+then
+	echo "BRT: <fc=#FF0000>$int</fc>%"
+elif [ $int -lt 70 ]
+then
+	echo "BRT: <fc=#FFFF00>$int</fc>%"
+else
+	echo "BRT: <fc=#00FF00>$int</fc>%"
+fi
+
+exit 0
