@@ -1,7 +1,7 @@
 URxvt*scrollBar:		false
 URxvt*scrollBar_right:	false 
-URxvt*transparent:		false
-URxvt*shading:			50
+URxvt*transparent:		true
+URxvt*shading:			20
 URxvt*font:				xft:inconsolata-g:style=Regular:size=11.5:antialias=true:hinting=true
 URxvt*letterSpace:		-1.5
 URxvt*depth:			32
