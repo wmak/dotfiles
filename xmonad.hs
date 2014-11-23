@@ -12,8 +12,8 @@ myTerminal = "urxvt"
 myModMask = mod4Mask -- Win key or Super_L
 -- border settings
 myBorderWidth = 2
-normalColor = "#757575"
-focusedColor = "#212121"
+normalColor = "#4CAF50"
+focusedColor = "#F44336"
 -- make room for xmobar
 myLayout = avoidStruts $ spacing 5 $ layoutHook $ defaultConfig
 
