@@ -140,6 +140,7 @@ precmd() {
 
 # dircolors config. {{{
 eval `dircolors -b $HOME/dotfiles/dircolors.conf`
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 #}}}
 
 # If there's a development folder cd to it.
