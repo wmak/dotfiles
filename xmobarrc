@@ -1,7 +1,7 @@
 Config { 
 font = "xft:roboto:style=Regular:size=8:antialias=true:hinting=true",
-bgColor = "#212121",
-fgColor = "#757575",
+bgColor = "#C62828",
+fgColor = "#A5D6A7",
 position = Top,
 lowerOnStart = True,
 borderColor = "#4E6CEF",
