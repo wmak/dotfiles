@@ -28,6 +28,22 @@ autoload -U compinit && compinit -i
 zmodload -i zsh/complist
 # }}}
 
+# Keybinding {{{
+typeset -A key
+
+key[Home]=[1~
+key[End]=[4~
+key[Insert]=${terminfo[kich1]}
+key[Delete]=${terminfo[kdch1]}
+
+# setup key accordingly
+bindkey     "${key[Home]}"      beginning-of-line
+bindkey     "${key[End]}"       end-of-line
+
+bindkey     "${key[Insert]}"    overwrite-mode
+bindkey     "${key[Delete]}"    delete-char
+# }}}
+
 # Options {{{
 	# Completion {{{
 		setopt		ALWAYS_TO_END
