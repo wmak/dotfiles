@@ -72,6 +72,7 @@ bindkey     "${key[Delete]}"    delete-char
 # exports {{{
 export HISTFILE=$HOME/.zsh_history
 export SAVEHIST=2048
+export HISTSIZE=2048
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
 
 # Go
