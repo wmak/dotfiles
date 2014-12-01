@@ -7,6 +7,8 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
 import XMonad.Layout.Spacing -- Add padding
+import XMonad.Layout.NoBorders(smartBorders)
+import XMonad.Layout.ResizableTile
 
 myTerminal = "urxvt"
 myModMask = mod4Mask -- Win key or Super_L
@@ -15,7 +17,16 @@ myBorderWidth = 2
 normalColor = "#4CAF50"
 focusedColor = "#F44336"
 -- make room for xmobar
-myLayout = avoidStruts $ spacing 5 $ layoutHook $ defaultConfig
+myLayout = avoidStruts 
+	$ theLayout
+	where
+		theLayout = tiled ||| mirrortiled ||| fullscreen
+		tiled		= spacing 5 $ ResizableTall 1 (2/100) (1/2) []
+		mirrortiled	= Mirror $ spacing 2 $ ResizableTall 2 (2/100) (3/4) []
+		fullscreen	= spacing 0 $ smartBorders $ Full
+		nmaster		= 1
+		ratio		= 1/2
+		delta		= 2/100
 
 myManageHook = insertPosition End Newer <+> manageDocks 
 	<+> manageHook defaultConfig
@@ -35,8 +46,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 		, ((modm, xK_o), sendMessage Expand)
 		-- Shrink the master area
 		, ((modm, xK_n), sendMessage Shrink)
+		-- Expand the height
+		, ((modm, xK_u), sendMessage MirrorExpand)
+		-- Shrink the height
+		, ((modm, xK_y), sendMessage MirrorShrink)
 		-- toggle gaps
 		, ((modm, xK_b), sendMessage ToggleStruts)
+		-- reset the layout
+		, ((modm, xK_k), refresh)
 		]
 
 main = xmonad $ defaultConfig
