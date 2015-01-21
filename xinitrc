@@ -1,7 +1,7 @@
 #!/bin/sh
 
 xsetroot -cursor_name left_ptr	# set the cursor icon
-sh ~/.fehbg &			# set the bg image
+sh ~/.wallpaper &			# set the bg image
 
 setxkbmap -layout colemak	# set the keyboard layout
 xset s noblank
