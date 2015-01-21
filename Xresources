@@ -2,7 +2,7 @@ URxvt*scrollBar:		false
 URxvt*scrollBar_right:	false 
 URxvt*transparent:		true
 URxvt*shading:			20
-URxvt*font:				xft:inconsolata-g:style=Regular:size=11.5:antialias=true:hinting=true
+URxvt*font:				xft:inconsolata-g:style=Regular:size=10:antialias=true:hinting=true
 URxvt*letterSpace:		-1.5
 URxvt*depth:			32
 URxvt*perl-ext-common:	clipboard
@@ -14,35 +14,35 @@ URxvt*keysym.End:		\033[4~
 
 *.foreground:   #FFFFFF
 *.background:   #212121
-*.cursorColor:  #F8BBD0
+*.cursorColor:  #D81B60
 
 ! Black / Grey
 *.color0:       #000000
-*.color8:       #BDBDBD
+*.color8:       #607D8B
 
 ! Red / Bright Red
-*.color1:       #E51C23
-*.color9:       #FF2D6F
+*.color1:       #F44336
+*.color9:       #FF4081
 
 ! Green + Bright Green
-*.color2:       #259B24
-*.color10:      #14E715
+*.color2:       #4CAF50
+*.color10:      #A5D6A7
 
 ! Yellow (Orange) + Bright Yellow (Yellow)
 *.color3:       #FF9800
-*.color11:      #FFEA00
+*.color11:      #FFCC80
 
 ! Blue + Bright Blue
-*.color4:       #5677FC
-*.color12:      #03A9F4
+*.color4:       #2196F3
+*.color12:      #90CAF9
 
 ! Magenta (Purple) + Bright Magenta
-*.color5:       #4A148C
-*.color13:      #9C27B0
+*.color5:       #9C27B0
+*.color13:      #CE93D8
 
 ! Cyan (Aqua) + Bright Cyan
-*.color6:       #00BCD4
-*.color14:      #00E5FF
+*.color6:       #009688
+*.color14:      #80CBC4
 
 ! Light Grey (Selection) + White (Current Line)
 *.color7:       #BDBDBD

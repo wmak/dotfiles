@@ -1,7 +1,7 @@
 Config { 
 font = "xft:roboto:style=Regular:size=8:antialias=true:hinting=true",
-bgColor = "#C62828",
-fgColor = "#A5D6A7",
+bgColor = "#212121",
+fgColor = "#E91E63",
 position = Top,
 lowerOnStart = True,
 borderColor = "#4E6CEF",
@@ -11,29 +11,37 @@ commands = [
 		["-t","Outside: <tempC>°C",
 		"-L","18",
 		"-H","25",
-		"--normal","green",
-		"--high","#FF0000",
-		"--low","#ACF0F2"] 
+		"--normal","#4CAF50",
+		"--high","#F44336",
+		"--low","#2196F3"] 
 		36000,
 	Run Wireless "wlp3s0" 
 		["-L","0",
 		"-H","30",
-		"--normal","red",
-		"--high","green", 
-		"-t", "wifi: <essid>@<quality>"] 
+		"--normal","#F44336",
+		"--high","#4CAF50", 
+		"-p", "3",
+		"-t", "<essid>@<quality>"] 
 		30,
 	Run MultiCpu 
 		["-L","3",
 		"-H","50",
-		"--normal","green",
-		"--high","#EB7F00",
+		"--normal","#4CAF50",
+		"--high","#F44336",
+		"-p", "3",
 		"-t", "CPU: <total>%"]
 		10,
 	Run Memory 
-		["-t","RAM: <usedratio>%"] 
+		["--normal", "#4CAF50",
+		"--high", "#F44336",
+		"-p", "2",
+		"-t","RAM: <usedratio>%"] 
 		10,
 	Run Swap
-		["-t","SWP: <usedratio>%"] 
+		["--normal", "#4CAF50",
+		"--high", "#F44336",
+		"-p", "2",
+		"-t","SWP: <usedratio>%"] 
 		10,
 	Run Date 
 		"%a %b %d %Y %H:%M:%S" 
@@ -42,9 +50,9 @@ commands = [
 	Run BatteryP ["BAT0"] 
 		["-L", "30", 
 		"-H", "50", 
-		"--normal", "yellow", 
-		"--high", "green", 
-		"--low", "red", 
+		"--normal", "#FFEB3B", 
+		"--high", "#4CAF50", 
+		"--low", "#F44336", 
 		"-t", "<acstatus>: <left>%",
 		"--",
 		"-o", "Discharging",
@@ -56,11 +64,11 @@ commands = [
 		10,
 	Run ThermalZone 0 
 		["-t","Inside: <temp>°C",
-		"-L","50",
-		"-H","65",
-		"--normal","green",
-		"--high", "#EB7F00",
-		"--low","#ACF0F2"]
+		"-L","40",
+		"-H","50",
+		"--normal","#4CAF50",
+		"--high", "#F44336",
+		"--low","#2196F3"]
 		 30,
 	Run DiskU [("/home", "HDD: <usedp>%")] 
 		["-L", "20", 
@@ -71,7 +79,7 @@ commands = [
 	Run Com "/home/wmak/dotfiles/pinger"
 		[]
 		"ping"
-		60,
+		6000,
 	Run Com "/home/wmak/dotfiles/updates"
 		[]
 		"updates"
@@ -83,5 +91,5 @@ commands = [
 	],
 sepChar = "%",
 alignSep = "}{",
-template = "%multicpu% | %memory% %swap% | %disku% | %ping% | %uptime% | %updates% }{ %bright% | %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
+template = "%multicpu% | %memory% %swap% | %disku% | %wlp3s0wi% %ping% | %uptime% | %updates% }{ %bright% | %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
 }

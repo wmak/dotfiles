@@ -4,7 +4,10 @@ if [ -x /usr/bin/dircolors ]; then
 	alias dir="dir -h --color=auto"
 	alias grep='grep --color=auto'
 fi
-alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg"
+alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
+alias leftmon="xrandr --output DP1 --auto --left-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
+alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
+alias 'wakethefuckup╯(´Д´)╯彡┻━┻'="xset dpms force off ;"
 alias offmon="xrandr --output DP1 --off"
 alias reload-zsh=". $HOME/.zshrc"
 alias mathlab="ssh makwill1@mathlab.utsc.utoronto.ca"
@@ -49,6 +52,9 @@ bindkey     "${key[Delete]}"    delete-char
 		setopt		ALWAYS_TO_END
 		unsetopt	LIST_BEEP
 		unsetopt	FLOW_CONTROL
+		setopt		AUTO_PUSHD
+		setopt		PUSHD_IGNORE_DUPS
+		setopt		AUTO_CD
 	# }}}
 
 	# History{{{
@@ -65,7 +71,7 @@ bindkey     "${key[Delete]}"    delete-char
 	# }}}
 	
 	# Other {{{
-		setopt		complete_in_word
+		setopt		COMPLETE_IN_WORD
 	# }}}
 # }}}
 
@@ -74,6 +80,7 @@ export HISTFILE=$HOME/.zsh_history
 export SAVEHIST=2048
 export HISTSIZE=2048
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
+export EDITOR="vim"
 
 # Go
 export GOPATH=$HOME/go
@@ -132,21 +139,22 @@ function virtualenv_info() {
 }
 
 precmd() {
-	PROMPT="%{$fg[blue]%}%B╭───Ⅽ%b"
+	PROMPT="%{$fg[red]%}%B╭───Ⅽ%b"
 	PROMPT+="%{$fg[green]%}${USER}"
 	PROMPT+="%{$fg[grey]%}%B@%b"
-	PROMPT+="%{$fg[cyan]%}${HOST}"
-	PROMPT+="%{$fg[blue]%}%BↃ──Ⅽ"
-	PROMPT+="%{$fg[magenta]%}%2d"
-	PROMPT+="%{$fg[blue]%}%BↃ──Ⅽ%b"
-	PROMPT+="%{$fg[yellow]%}%T"
-	PROMPT+="%{$fg[blue]%}%BↃ──Ⅽ%b"
+	PROMPT+="%{$fg[yellow]%}${HOST}"
+	PROMPT+="%{$fg[red]%}%BↃ──Ⅽ%b"
+	PROMPT+="%{$fg[blue]%}%2d"
+	PROMPT+="%{$fg[red]%}%BↃ──Ⅽ%b"
+	PROMPT+="%{$fg[cyan]%}%T"
+	PROMPT+="%{$fg[red]%}%BↃ──Ⅽ%b"
 	PROMPT+="%{$fg[red]%}%?"
-	PROMPT+="%{$fg[blue]%}%BↃ"
+	PROMPT+="%{$fg[red]%}%BↃ"
 	PROMPT+=$(virtualenv_info)
 	PROMPT+=$'\n'"╰─‹"
+	PROMPT+="%{$reset_color%}%b"
 	PROMPT+=$(git_prompt_info)
-	PROMPT+="%{$fg[blue]%}%B› "
+	PROMPT+="%{$fg[red]%}%B› "
 	PROMPT+="%{$reset_color%}%b"
 }
 
