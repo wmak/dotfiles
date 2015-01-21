@@ -1,14 +1,21 @@
-" ignore vi compatibility
+" Setup for Vundle
+let g:vundle_default_git_proto="git"
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+" Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+call vundle#end() 
 
 " better brace matching
 runtime macros/matchit.vim
 
 " syntax highlighting
 syntax on
-filetype on
-filetype plugin on
-filetype indent on
+filetype plugin indent on 
 
 " highlight 81 and onward so 80 is the last valid column
 set textwidth=80
@@ -43,6 +50,9 @@ nnoremap <F3> :set list!<cr>
 
 " go fmt
 nnoremap <F4> :w<cr>:!go fmt % <cr>:edit<cr>
+
+" map <F7> to spellcheck
+nnoremap <F5> :set spelllang=en_ca spell<cr>
 
 " Easier entry to commmand-mode
 noremap ; :
@@ -116,3 +126,7 @@ if has("persistent_undo")
     set undodir=~/.vim/backups
     set undofile
 endif
+
+" Colour theme
+colorscheme leo
+hi Normal ctermbg=NONE
