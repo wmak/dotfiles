@@ -6,7 +6,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias leftmon="xrandr --output DP1 --auto --left-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
-alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
+alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms forcen off ;"
 alias 'wakethefuckup╯(´Д´)╯彡┻━┻'="xset dpms force off ;"
 alias offmon="xrandr --output DP1 --off"
 alias reload-zsh=". $HOME/.zshrc"
@@ -18,6 +18,8 @@ alias fuckinginternet="wicd-curses"
 alias cleanup="sudo pacman -Sc && sudo pacman-optimize && sync"
 alias pdf="texi2pdf --build-dir=.t2d"
 alias g="git"
+alias emacs="emacs -nw"
+alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH"
 
 function cdls(){
 	cd $@ && ls
@@ -54,7 +56,7 @@ bindkey     "${key[Delete]}"    delete-char
 		unsetopt	FLOW_CONTROL
 		setopt		AUTO_PUSHD
 		setopt		PUSHD_IGNORE_DUPS
-		setopt		AUTO_CD
+		unsetopt	AUTO_CD
 	# }}}
 
 	# History{{{
@@ -79,8 +81,11 @@ bindkey     "${key[Delete]}"    delete-char
 export HISTFILE=$HOME/.zsh_history
 export SAVEHIST=2048
 export HISTSIZE=2048
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
+export PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
 export EDITOR="vim"
+
+# Python
+export WORKON_HOME=$HOME/.virtualenvs
 
 # Go
 export GOPATH=$HOME/go
@@ -135,7 +140,7 @@ function git_prompt_info() {
 }
 
 function virtualenv_info() {
-	[[ -n $VIRTUAL_ENV ]] && echo -n "%{$fg[blue]%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{$fg[blue]%}Ↄ"
+	[[ -n $VIRTUAL_ENV ]] && echo -n "%{$fg[red]%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{$fg[red]%}Ↄ"
 }
 
 precmd() {
@@ -162,6 +167,7 @@ precmd() {
 
 # Plugins {{{
 	source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+	source /usr/bin/virtualenvwrapper.sh
 #}}}
 
 # dircolors config. {{{
