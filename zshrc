@@ -20,7 +20,7 @@ alias pdf="texi2pdf --build-dir=.t2d"
 alias g="git"
 alias emacs="emacs -nw"
 alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH"
-alias workon="[[ \`which workon\` == *\"aliased\"* ]] && source /usr/bin/virtualenvwrapper.sh && workon"
+alias workon="source /usr/bin/virtualenvwrapper.sh && workon"
 
 function cdls(){
 	cd $@ && ls
