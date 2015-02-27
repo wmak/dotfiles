@@ -20,6 +20,7 @@ alias pdf="texi2pdf --build-dir=.t2d"
 alias g="git"
 alias emacs="emacs -nw"
 alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH"
+alias workon="[[ \`which workon\` == *\"aliased\"* ]] && source /usr/bin/virtualenvwrapper.sh && workon"
 
 function cdls(){
 	cd $@ && ls
@@ -167,12 +168,11 @@ precmd() {
 
 # Plugins {{{
 	source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	source /usr/bin/virtualenvwrapper.sh
 #}}}
 
 # dircolors config. {{{
-eval `dircolors -b $HOME/dotfiles/dircolors.conf`
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+	eval `dircolors -b $HOME/dotfiles/dircolors.conf`
+	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 #}}}
 
 # If there's a development folder cd to it.
