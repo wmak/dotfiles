@@ -3,6 +3,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.InsertPosition
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
+import XMonad.Actions.PhysicalScreens
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
@@ -10,7 +11,7 @@ import XMonad.Layout.Spacing -- Add padding
 import XMonad.Layout.NoBorders(smartBorders)
 import XMonad.Layout.ResizableTile
 
-myTerminal = "urxvt"
+myTerminal = "urxvtc"
 myModMask = mod4Mask -- Win key or Super_L
 -- border settings
 myBorderWidth = 2
@@ -54,6 +55,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 		, ((modm, xK_b), sendMessage ToggleStruts)
 		-- reset the layout
 		, ((modm, xK_k), refresh)
+		-- change screens
+		, ((modm, xK_f), viewScreen 0)
 		]
 
 main = xmonad $ defaultConfig

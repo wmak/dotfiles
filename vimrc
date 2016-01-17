@@ -5,9 +5,13 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-surround'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
 call vundle#end() 
 
 " better brace matching
@@ -19,6 +23,7 @@ filetype plugin indent on
 
 " highlight 81 and onward so 80 is the last valid column
 set textwidth=80
+autocmd bufreadpre *.html setlocal textwidth=0
 set colorcolumn=+1,+21
 
 " show line numbers
@@ -52,7 +57,10 @@ nnoremap <F3> :set list!<cr>
 nnoremap <F4> :w<cr>:!go fmt % <cr>:edit<cr>
 
 " map <F7> to spellcheck
-nnoremap <F5> :set spelllang=en_ca spell<cr>
+nnoremap <F7> :set spelllang=en_ca spell<cr>
+
+" map <F8> to NERDTree
+nnoremap <F8> :NERDTree<cr>
 
 " Easier entry to commmand-mode
 noremap ; :
@@ -93,6 +101,7 @@ endif
 command! -count=0 -nargs=0 WC <count>,$w ! wc -w
 command! -range=% -nargs=0 WC <line1>,<line2>w ! wc -w
 
+command! -nargs=? -complete=file E :Explore <args>
 " Folds {{{
 set foldmethod=marker          " Fold based on marker
 set foldnestmax=3              " Deepest fold is 3 levels

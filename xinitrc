@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xsetroot -cursor_name left_ptr	# set the cursor icon
+xsetroot -cursor_name pirate	# set the cursor icon
 sh ~/.wallpaper &			# set the bg image
 
 setxkbmap -layout colemak	# set the keyboard layout
@@ -12,7 +12,8 @@ xset -b				# disable the system beep
 xmobar &			# start xmobar
 xbacklight -set 80	# preset the brightness to something nicer
 google-chrome-beta & # run google chrome
-urxvt -T Terminal & # run a terminal
+urxvtd -q -f -o		#start urxvt daemon
+urxvtc				#start a urxvt client
 
 exec xmonad			# start xmonad
 

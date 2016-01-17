@@ -90,5 +90,25 @@
     m:0xc + c:11
     Control+Alt + 2 
 
+#Pavucontrol
+"pavucontrol"
+    m:0x0 + c:121
+    XF86AudioMute 
+
+#htop
+"urxvt -e htop"
+    m:0x5 + c:9
+    Control+Shift + Escape 
+
+#wicd
+"wicd-gtk -n"
+    m:0x0 + c:246
+    XF86WLAN 
+
+#Remark
+"urxvt -e htop"
+    m:0x0 + c:172
+    XF86AudioPlay 
+
 #
 # End of xbindkeys configuration

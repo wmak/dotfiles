@@ -1,0 +1,24 @@
+;; Line numbering
+(global-linum-mode t)
+
+;; Markdown syntax highlighting
+(add-to-list 'load-path "~/.emacs.d/polymode/")
+(add-to-list 'load-path "~/.emacs.d/polymode/modes/")
+(setq load-path
+      (append '("~/.emacs.d/polymode/"  "~/.emacs.d/polymode/modes")
+      load-path))
+(require 'poly-markdown)
+(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+
+;; Backup files
+(setq backup-directory-alist `(("." . "~/.saves")))
+(setq backup-by-copying t)
+
+;; MELPA
+(require 'package)
+(add-to-list 'package-archives
+'("melpa" . "http://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+;; For important compatibility libraries like cl-lib
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize)

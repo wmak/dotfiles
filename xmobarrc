@@ -60,7 +60,7 @@ commands = [
 		"-O", "Charging"]
 		 10,
 	Run Uptime 
-		[] 
+		["-t", "UP: <days>D<hours>H<minutes>M"] 
 		10,
 	Run ThermalZone 0 
 		["-t","Inside: <temp>°C",
@@ -76,10 +76,10 @@ commands = [
 		"-m", "1", 
 		"-p", "3"] 
 		20,
-	Run Com "/home/wmak/dotfiles/pinger"
+	Run Com "/home/wmak/dotfiles/inet"
 		[]
-		"ping"
-		6000,
+		"inet"
+		10,
 	Run Com "/home/wmak/dotfiles/updates"
 		[]
 		"updates"
@@ -87,9 +87,13 @@ commands = [
 	Run Com "/home/wmak/dotfiles/backlight"
 		[]
 		"bright"
-		10
+		10,
+	Run Com "/home/wmak/dotfiles/volume"
+		[]
+		"volume"
+		1
 	],
 sepChar = "%",
 alignSep = "}{",
-template = "%multicpu% | %memory% %swap% | %disku% | %wlp3s0wi% %ping% | %uptime% | %updates% }{ %bright% | %battery% | %thermal0% | %CYYZ% | <fc=#ACF0F2>%date%</fc>"
+template = "%multicpu% | %memory% %swap% | %disku% | %inet% | %uptime% | %updates% }{ %bright% | %battery% | %thermal0% | %volume% | %CYYZ% | <fc=#ACF0F2>%date%</fc>" 
 }

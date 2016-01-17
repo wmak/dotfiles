@@ -6,12 +6,14 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias leftmon="xrandr --output DP1 --auto --left-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
-alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms forcen off ;"
+alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias 'wakethefuckup╯(´Д´)╯彡┻━┻'="xset dpms force off ;"
 alias offmon="xrandr --output DP1 --off"
 alias reload-zsh=". $HOME/.zshrc"
-alias mathlab="ssh makwill1@mathlab.utsc.utoronto.ca"
-alias Osiris="ssh 192.168.0.41"
+alias portal-test-server="ssh 10.250.100.100"
+alias jenkins-mri="ssh 10.250.100.20"
+alias jarvis-mri="ssh 10.250.100.21"
+alias Osiris="ssh 192.168.0.40"
 alias murder="kill -9"
 alias die="kill -15"
 alias fuckinginternet="wicd-curses"
@@ -19,8 +21,19 @@ alias cleanup="sudo pacman -Sc && sudo pacman-optimize && sync"
 alias pdf="texi2pdf --build-dir=.t2d"
 alias g="git"
 alias emacs="emacs -nw"
-alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH"
-alias workon="source /usr/bin/virtualenvwrapper.sh && workon"
+alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=Anaconda"
+alias ':q'="exit"
+alias psgrep="ps aux | grep"
+
+function workon(){
+	if [ -f $HOME/.workon/$@ ]; then
+		printf "You're now working on %b\n" $@
+		source $HOME/.workon/$@
+	else
+		source /usr/bin/virtualenvwrapper.sh
+		workon $@
+	fi
+}
 
 function cdls(){
 	cd $@ && ls
@@ -37,6 +50,19 @@ zmodload -i zsh/complist
 # Keybinding {{{
 typeset -A key
 
+up-line-or-local-history() {
+    zle set-local-history 1
+    zle up-line-or-history
+    zle set-local-history 0
+}
+zle -N up-line-or-local-history
+down-line-or-local-history() {
+    zle set-local-history 1
+    zle down-line-or-history
+    zle set-local-history 0
+}
+zle -N down-line-or-local-history
+
 key[Home]=[1~
 key[End]=[4~
 key[Insert]=${terminfo[kich1]}
@@ -48,6 +74,9 @@ bindkey     "${key[End]}"       end-of-line
 
 bindkey     "${key[Insert]}"    overwrite-mode
 bindkey     "${key[Delete]}"    delete-char
+
+bindkey		"${key[Up]}"		up-line-or-local-history()
+bindkey		"${key[Down]}"		down-line-or-local-history()
 # }}}
 
 # Options {{{

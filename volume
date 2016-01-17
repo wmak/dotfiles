@@ -1,0 +1,12 @@
+vol=$(printf '%.0f\n' `amixer get Master | grep Left | grep % |awk '{print $5}'|sed -e 's/\[//' -e 's/%\]//'`)
+if [ $vol -lt 30 ]
+then
+	echo "VOL: <fc=#FF0000>$vol</fc>%"
+elif [ $vol -lt 70 ]
+then
+	echo "VOL: <fc=#FFFF00>$vol</fc>%"
+else
+	echo "VOL: <fc=#00FF00>$vol</fc>%"
+fi
+
+exit 0
