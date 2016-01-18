@@ -169,27 +169,29 @@ function git_prompt_info() {
 	echo ${vcs_info_msg_0_}"%{$reset_color%}"
 }
 
+ord=`printf '%d' "'$HOST"`
+
 function virtualenv_info() {
-	[[ -n $VIRTUAL_ENV ]] && echo -n "%{$fg[red]%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{$fg[red]%}Ↄ"
+	[[ -n $VIRTUAL_ENV ]] && echo -n "%{$bgc%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{$bgc%}Ↄ"
 }
 
 precmd() {
-	PROMPT="%{$fg[red]%}%B╭───Ⅽ%b"
+	PROMPT=%F{$ord}"╭───Ⅽ"
 	PROMPT+="%{$fg[green]%}${USER}"
 	PROMPT+="%{$fg[grey]%}%B@%b"
 	PROMPT+="%{$fg[yellow]%}${HOST}"
-	PROMPT+="%{$fg[red]%}%BↃ──Ⅽ%b"
+	PROMPT+=%F{$ord}"Ↄ──Ⅽ"
 	PROMPT+="%{$fg[blue]%}%2d"
-	PROMPT+="%{$fg[red]%}%BↃ──Ⅽ%b"
+	PROMPT+=%F{$ord}"Ↄ──Ⅽ"
 	PROMPT+="%{$fg[cyan]%}%T"
-	PROMPT+="%{$fg[red]%}%BↃ──Ⅽ%b"
-	PROMPT+="%{$fg[red]%}%?"
-	PROMPT+="%{$fg[red]%}%BↃ"
+	PROMPT+=%F{$ord}"Ↄ──Ⅽ"
+	PROMPT+=%F{$ord}"%?"
+	PROMPT+=%F{$ord}"Ↄ"
 	PROMPT+=$(virtualenv_info)
 	PROMPT+=$'\n'"╰─‹"
 	PROMPT+="%{$reset_color%}%b"
 	PROMPT+=$(git_prompt_info)
-	PROMPT+="%{$fg[red]%}%B› "
+	PROMPT+=%F{$ord}"› "
 	PROMPT+="%{$reset_color%}%b"
 }
 
