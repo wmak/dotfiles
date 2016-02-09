@@ -171,8 +171,13 @@ function git_prompt_info() {
 
 ord=`printf '%d' "'$HOST"`
 
+if [ $HOST = "Rhea" ]; then
+	ord=199
+fi
+
 function virtualenv_info() {
-	[[ -n $VIRTUAL_ENV ]] && echo -n "%{$bgc%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{$bgc%}Ↄ"
+	[[ -n $VIRTUAL_ENV ]] && 
+	echo -n "%{"%F{$ord}"%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{"%F{$ord}"%}Ↄ"
 }
 
 precmd() {
@@ -192,7 +197,7 @@ precmd() {
 	PROMPT+="%{$reset_color%}%b"
 	PROMPT+=$(git_prompt_info)
 	PROMPT+=%F{$ord}"› "
-	PROMPT+="%{$reset_color%}%b"
+	PROMPT+=%F{255}%b
 }
 
 #}}}
