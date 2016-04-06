@@ -9,9 +9,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sleuth'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
 call vundle#end() 
 
 " better brace matching
@@ -21,8 +21,12 @@ runtime macros/matchit.vim
 syntax on
 filetype plugin indent on 
 
-" highlight 81 and onward so 80 is the last valid column
-set textwidth=80
+" Backspace on macs
+set nocompatible
+set backspace=indent,eol,start
+
+" highlight 91 and onward so 90 is the last valid column
+set textwidth=90
 autocmd bufreadpre *.html setlocal textwidth=0
 set colorcolumn=+1,+21
 
@@ -68,6 +72,9 @@ noremap ; :
 " rebing backslash and bar for F and T
 noremap <BSLASH> ;
 noremap <BAR> ,
+
+" Ignore swp and pyc files
+let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
 
 " Map Leader is comma
 let mapleader           = ','
@@ -137,5 +144,5 @@ if has("persistent_undo")
 endif
 
 " Colour theme
-colorscheme leo
+colorscheme delek
 hi Normal ctermbg=NONE
