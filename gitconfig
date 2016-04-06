@@ -1,6 +1,7 @@
 [user]
-	email		= william.mak@hotmail.ca
+	email		= william@wmak.io
 	name		= William Mak
+	signingkey	= 0BFE696F
 
 [github]
 	user		= wmak
@@ -16,7 +17,7 @@
 
 [core]
 	editor		= "vim"
-	excludesfile= "~/.gitignore"
+	excludesfile	= "~/.gitignore"
 
 [color]
 	ui               = true
@@ -30,8 +31,10 @@
 	l			= log -n20
 	s			= status
 	a			= add
-	c			= commit
+	c			= commit --verbose
 	p			= push
+	psu			= push --set-upstream origin
+	g			= grep -npi --break --heading
 	pu			= pull
 
 [merge]
