@@ -1,8 +1,28 @@
+# exports {{{
+bindkey -e # LITERALLY MAGIC NO CLUE WHY PUTTING THIS AT THE BOTTOM FUCKS SHIT UP
+export HISTFILE=$HOME/.zsh_history
+export SAVEHIST=2048
+export HISTSIZE=2048
+export PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
+export EDITOR="vim"
+export VISUAL="vim"
+
+# Python
+export WORKON_HOME=$HOME/.virtualenvs
+
+# Go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+#}}}
+
 # Aliases {{{
 if [ -x /usr/bin/dircolors ]; then
 	alias ls="ls -h --color=auto"
 	alias dir="dir -h --color=auto"
 	alias grep='grep --color=auto'
+fi
+if [ -x /usr/local/bin/ipython ]; then
+    alias python="ipython"
 fi
 alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias leftmon="xrandr --output DP1 --auto --left-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
@@ -24,13 +44,14 @@ alias emacs="emacs -nw"
 alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=Anaconda"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
+alias vagrantsshweb="cd $HOME/polaris/provisioning/vagrant/polaris && vagrant ssh web"
 
 function workon(){
 	if [ -f $HOME/.workon/$@ ]; then
 		printf "You're now working on %b\n" $@
 		source $HOME/.workon/$@
 	else
-		source /usr/bin/virtualenvwrapper.sh
+		source /usr/local/bin/virtualenvwrapper.sh
 		workon $@
 	fi
 }
@@ -62,6 +83,12 @@ down-line-or-local-history() {
     zle set-local-history 0
 }
 zle -N down-line-or-local-history
+
+# Adding command editor
+autoload -z edit-command-line
+bindkey -M vicmd v edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 key[Home]=[1~
 key[End]=[4~
@@ -106,21 +133,6 @@ bindkey		"${key[Down]}"		down-line-or-local-history()
 		setopt		COMPLETE_IN_WORD
 	# }}}
 # }}}
-
-# exports {{{
-export HISTFILE=$HOME/.zsh_history
-export SAVEHIST=2048
-export HISTSIZE=2048
-export PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
-export EDITOR="vim"
-
-# Python
-export WORKON_HOME=$HOME/.virtualenvs
-
-# Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-#}}}
 
 # zstyles {{{
 # That good ol' pretty autocomplete
@@ -172,7 +184,9 @@ function git_prompt_info() {
 ord=`printf '%d' "'$HOST"`
 
 if [ $HOST = "Rhea" ]; then
-	ord=199
+    ord=199
+elif [ $HOST = "GTOR-03013" ]; then
+    ord=13
 fi
 
 function virtualenv_info() {
@@ -207,9 +221,15 @@ precmd() {
 #}}}
 
 # dircolors config. {{{
-	eval `dircolors -b $HOME/dotfiles/dircolors.conf`
-	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+if whence dircolors >/dev/null; then
+    eval `dircolors -b $HOME/dotfiles/dircolors.conf`
+    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+else
+    export CLICOLOR=1
+    zstyle ':completion:*:default' list-colors ''
+fi	
 #}}}
 
 # If there's a development folder cd to it.
 [[ -e $HOME/development ]] && cd $HOME/development
+
