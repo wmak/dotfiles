@@ -12,6 +12,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'mkitt/tabline.vim'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'w0ng/vim-hybrid'
 call vundle#end() 
 
 " better brace matching
@@ -29,6 +32,9 @@ set backspace=indent,eol,start
 set textwidth=90
 autocmd bufreadpre *.html setlocal textwidth=0
 set colorcolumn=+1,+21
+
+" spellcheck git commits
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " show line numbers
 set number
@@ -144,5 +150,6 @@ if has("persistent_undo")
 endif
 
 " Colour theme
-colorscheme delek
+set background=dark
+colorscheme hybrid
 hi Normal ctermbg=NONE
