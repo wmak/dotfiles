@@ -45,6 +45,8 @@ alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=An
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
 alias vagrantsshweb="cd $HOME/polaris/provisioning/vagrant/polaris && vagrant ssh web"
+alias vagrantsshdb="cd $HOME/polaris/provisioning/vagrant/polaris && vagrant ssh db_primary"
+alias pweb="ssh webdev@pweb1"
 
 function workon(){
 	if [ -f $HOME/.workon/$@ ]; then

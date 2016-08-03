@@ -15,7 +15,18 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mkitt/tabline.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'bling/vim-bufferline'
+Plugin 'vim-airline/vim-airline'
 call vundle#end() 
+
+" bufferline settings
+let g:bufferline_echo = 0
+autocmd VimEnter *
+  \ let &statusline='%{bufferline#refresh_status()}'
+    \ .bufferline#get_status_string()
+
+" Airline font
+let g:airline_powerline_fonts = 1
 
 " better brace matching
 runtime macros/matchit.vim
@@ -35,6 +46,14 @@ set colorcolumn=+1,+21
 
 " spellcheck git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" speed up buffers?
+augroup EditVim
+  autocmd!
+  autocmd BufWritePost .vimrc source $MYVIMRC
+  autocmd FileType vim setlocal foldmethod=marker
+augroup END
+set bufhidden=hide
 
 " show line numbers
 set number
@@ -103,13 +122,6 @@ let g:tex_flavor = "latex"
 set laststatus=2
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L
 
-" coloured statusline
-if version >= 700
-	hi StatusLine term=reverse ctermfg=5 ctermbg=3 gui=bold,reverse
-	au InsertEnter * hi StatusLine term=reverse ctermfg=4 gui=undercurl guisp=blue
-	au InsertLeave * hi StatusLine term=reverse ctermfg=5 gui=bold,reverse
-endif
-
 " Word count
 command! -count=0 -nargs=0 WC <count>,$w ! wc -w
 command! -range=% -nargs=0 WC <line1>,<line2>w ! wc -w
@@ -153,3 +165,11 @@ endif
 set background=dark
 colorscheme hybrid
 hi Normal ctermbg=NONE
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif

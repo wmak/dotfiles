@@ -33,3 +33,7 @@ venv
 # latex #
 #########
 .t2d
+
+# osx #
+#######
+.DS_Store
