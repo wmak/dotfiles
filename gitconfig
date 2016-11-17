@@ -1,7 +1,6 @@
 [user]
 	email		= william@wmak.io
 	name		= William Mak
-	signingkey	= 0BFE696F
 
 [github]
 	user		= wmak
@@ -36,6 +35,7 @@
 	psu			= push --set-upstream origin
 	g			= grep -npi --break --heading
 	pu			= pull
+	edit = !$EDITOR $(git status --short | awk '$1 ~ /^M|A|U/ {print $2}' )
 
 [merge]
 	tool		= vimdiff

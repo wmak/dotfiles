@@ -44,9 +44,11 @@ alias emacs="emacs -nw"
 alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=Anaconda"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
-alias vagrantsshweb="cd $HOME/polaris/provisioning/vagrant/polaris && vagrant ssh web"
-alias vagrantsshdb="cd $HOME/polaris/provisioning/vagrant/polaris && vagrant ssh db_primary"
+alias vagrantsshweb="cd $HOME/polaris/provisioning && vagrant ssh web"
+alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
 alias pweb="ssh webdev@pweb1"
+alias polaris="cd $HOME/development/polaris/pysrc"
+alias pyclean="find . -name '*.pyc' -delete"
 
 function workon(){
 	if [ -f $HOME/.workon/$@ ]; then

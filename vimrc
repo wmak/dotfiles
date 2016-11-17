@@ -6,18 +6,19 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sleuth'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'mkitt/tabline.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
+Plugin 'nvie/vim-flake8'
 call vundle#end() 
+
+" switch buffers without saving
+set hidden
 
 " bufferline settings
 let g:bufferline_echo = 0
@@ -46,6 +47,9 @@ set colorcolumn=+1,+21
 
 " spellcheck git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" flake8 python files
+autocmd BufWritePost *.py call Flake8()
 
 " speed up buffers?
 augroup EditVim
@@ -85,11 +89,8 @@ nnoremap <F3> :set list!<cr>
 " go fmt
 nnoremap <F4> :w<cr>:!go fmt % <cr>:edit<cr>
 
-" map <F7> to spellcheck
-nnoremap <F7> :set spelllang=en_ca spell<cr>
-
-" map <F8> to NERDTree
-nnoremap <F8> :NERDTree<cr>
+" map <F8> to spellcheck
+nnoremap <F8> :set spelllang=en_ca spell<cr>
 
 " Easier entry to commmand-mode
 noremap ; :
