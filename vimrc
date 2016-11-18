@@ -14,7 +14,7 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
-Plugin 'nvie/vim-flake8'
+Plugin 'wmak/fairyfloss.vim'
 call vundle#end() 
 
 " switch buffers without saving
@@ -48,8 +48,8 @@ set colorcolumn=+1,+21
 " spellcheck git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" flake8 python files
-autocmd BufWritePost *.py call Flake8()
+" syntastic
+let g:syntastic_python_checkers = ['flake8']
 
 " speed up buffers?
 augroup EditVim
@@ -164,7 +164,9 @@ endif
 
 " Colour theme
 set background=dark
-colorscheme hybrid
+set termguicolors
+set t_ut=
+colorscheme fairyfloss
 hi Normal ctermbg=NONE
 
 if exists('$TMUX')
