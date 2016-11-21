@@ -163,7 +163,6 @@ if has("persistent_undo")
 endif
 
 " Colour theme
-set background=dark
 set termguicolors
 set t_ut=
 colorscheme fairyfloss

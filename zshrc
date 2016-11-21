@@ -236,4 +236,3 @@ fi
 
 # If there's a development folder cd to it.
 [[ -e $HOME/development ]] && cd $HOME/development
-
