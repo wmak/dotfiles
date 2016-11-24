@@ -169,6 +169,7 @@ endif
 
 " Colour theme
 set termguicolors
+set t_Co=256
 set t_ut=
 colorscheme fairyfloss
 hi Normal ctermbg=NONE

@@ -6,6 +6,7 @@ export HISTSIZE=2048
 export PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
 export EDITOR="vim"
 export VISUAL="vim"
+export TERM="xterm-256color"
 
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
