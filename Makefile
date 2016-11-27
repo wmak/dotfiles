@@ -1,16 +1,20 @@
 DIR=$(HOME)/dotfiles
 
-deb: symlinks copy apt-get vundle zsh
+polaris: symlinks copy apt-get vundle zsh zsh-polaris tmux-deb
 
 symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig
 	@ln -sf $(DIR)/gitignore $(HOME)/.gitignore
-	@ln -sf $(DIR)/tmux.conf $(HOME)/.tmux.conf
 	@ln -sf $(DIR)/vimrc $(HOME)/.vimrc
 	@ln -sf $(DIR)/zprofile $(HOME)/.zprofile
+	if [ ! -d $(HOME)/.config ]; then \
+		@mkdir $(HOME)/.config; \
+	fi
+	@ln -sf $(DIR)/flake8 $(HOME)/.config/flake8
 
 copy:
 	@cp -fH $(DIR)/zshrc $(HOME)/.zshrc
+	@cp -fH $(DIR)/tmux.conf $(HOME)/.tmux.conf
 	@echo "export LC_ALL=en_US.UTF-8" >> $(HOME)/.zshrc
 	@echo "export LANG=en_US.UTF-8" >> $(HOME)/.zshrc
 
@@ -19,7 +23,7 @@ apt-get:
 	#sudo add-apt-repository ppa:wmakkers/precise-vim
 	sudo add-apt-repository ppa:git-core/ppa
 	sudo apt-get update
-	sudo apt-get install vim git zsh
+	sudo apt-get install vim git zsh tmux htop
 
 vundle: symlinks
 	if [ ! -d $(HOME)/.vim/bundle/Vundle.vim ]; then \
@@ -30,7 +34,7 @@ vundle: symlinks
 zsh: symlinks
 	sudo chsh -s /bin/zsh vagrant
 
-polaris: copy
+zsh-polaris: copy
 	@echo "" >> $(HOME)/.zshrc
 	@echo "# Polaris specific settings" >> $(HOME)/.zshrc
 	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python" >> $(HOME)/.zshrc
@@ -40,3 +44,14 @@ polaris: copy
 	@echo "alias wopolaris='workon polaris;cd /home/webdev/websites/polaris/pysrc'" >> $(HOME)/.zshrc
 	@echo "alias rspolaris='workon polaris;sudo /etc/init.d/apache2 restart;python /home/webdev/websites/polaris/pysrc/manage.py runserver_plus'" >> $(HOME)/.zshrc
 	@echo "wopolaris" >> $(HOME)/.zshrc
+
+tmux-deb:
+	@echo "set -g mode-mouse on" >> $(HOME)/.tmux.conf
+
+tmux-mac:
+	if [ ! -d $(HOME)/.tmux/plugins/tpm ]; then \
+		git clone https://github.com/tmux-plugins/tpm $(HOME)/.tmux/plugins/tpm; \
+	fi
+	@echo "set -g mouse on" >> $(HOME)/.tmux.conf
+	@echo "set -g @plugin 'tmux-plugins/tmux-resurrect'" >> $(HOME)/.tmux.conf
+	@echo "run '~/.tmux/plugins/tpm/tpm'" >> $(HOME)/.tmux.conf
