@@ -28,6 +28,11 @@ autocmd VimEnter *
 
 " Airline font
 let g:airline_powerline_fonts = 1
+let g:airline_left_alt_sep =''
+let g:airline_section_b = ''
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:airline_section_z = airline#section#create(['%c'])
 
 " better brace matching
 runtime macros/matchit.vim
@@ -163,8 +168,8 @@ if has("persistent_undo")
 endif
 
 " Colour theme
-set background=dark
 set termguicolors
+set t_Co=256
 set t_ut=
 colorscheme fairyfloss
 hi Normal ctermbg=NONE
