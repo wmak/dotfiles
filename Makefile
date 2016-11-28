@@ -20,10 +20,10 @@ copy:
 
 apt-get:
 	sudo apt-get install software-properties-common python-software-properties
-	sudo add-apt-repository ppa:git-core/ppa
+	sudo add-apt-repository -y ppa:git-core/ppa
 	sudo apt-get update
-	sudo apt-get remove vim vim-runtime gvim
-	sudo apt-get install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake
+	sudo apt-get -y remove vim vim-runtime gvim
+	sudo apt-get -y install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake
 
 vim:
 	if [ ! -d $(HOME)/.vimsource ]; then \
