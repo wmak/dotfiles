@@ -1,7 +1,7 @@
 DIR=$(HOME)/dotfiles
 
-polaris: symlinks copy apt-get vim-setup zsh zsh-polaris
-deb: symlinks copy apt-get vim vim-setup zsh
+polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris
+deb: symlinks copy apt-get vim vim-setup zsh zsh-python3
 
 symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig
@@ -67,6 +67,13 @@ vim-setup: symlinks
 
 zsh: symlinks
 	sudo chsh -s /bin/zsh $(USER)
+
+zsh-python3: copy
+	@echo "" >> $(HOME)/.zshrc
+	@echo "# Polaris specific settings" >> $(HOME)/.zshrc
+	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $(HOME)/.zshrc
+	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
+	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
 
 zsh-polaris: copy
 	@echo "" >> $(HOME)/.zshrc
