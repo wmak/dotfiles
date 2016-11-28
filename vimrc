@@ -171,7 +171,7 @@ endif
 set termguicolors
 set t_Co=256
 set t_ut=
-colorscheme fairyfloss
+silent! colorscheme fairyfloss
 hi Normal ctermbg=NONE
 
 if exists('$TMUX')
