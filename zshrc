@@ -22,7 +22,7 @@ if [ -x /usr/bin/dircolors ]; then
 	alias dir="dir -h --color=auto"
 	alias grep='grep --color=auto'
 fi
-if [ -x /usr/local/bin/ipython ]; then
+if which ipython > /dev/null; then
     alias python="ipython"
 fi
 alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"

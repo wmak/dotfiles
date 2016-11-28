@@ -70,7 +70,7 @@ zsh: symlinks
 
 zsh-python3: copy
 	@echo "" >> $(HOME)/.zshrc
-	@echo "# Polaris specific settings" >> $(HOME)/.zshrc
+	@echo "# Python3 specific settings" >> $(HOME)/.zshrc
 	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $(HOME)/.zshrc
 	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
 	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
