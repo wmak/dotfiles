@@ -1,7 +1,7 @@
 DIR=$(HOME)/dotfiles
 
-polaris: symlinks copy apt-get vim-setup zsh zsh-polaris tmux-deb
-deb: symlinks copy apt-get vim vim-setup zsh tmux-deb
+polaris: symlinks copy apt-get vim-setup zsh zsh-polaris
+deb: symlinks copy apt-get vim vim-setup zsh
 
 symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig
