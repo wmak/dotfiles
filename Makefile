@@ -63,7 +63,7 @@ vim-setup: symlinks
 		git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim; \
 	fi
 	@echo | echo | vim +PluginInstall +qall
-	mkdir $(HOME)/.vim/backups
+	@mkdir -p $(HOME)/.vim/backups
 
 zsh: symlinks
 	sudo chsh -s /bin/zsh $(USER)
