@@ -8,9 +8,7 @@ symlinks:
 	@ln -sf $(DIR)/gitignore $(HOME)/.gitignore
 	@ln -sf $(DIR)/vimrc $(HOME)/.vimrc
 	@ln -sf $(DIR)/zprofile $(HOME)/.zprofile
-	if [ ! -d $(HOME)/.config ]; then \
-		@mkdir $(HOME)/.config; \
-	fi
+	@mkdir -p $(HOME)/.config
 	@ln -sf $(DIR)/flake8 $(HOME)/.config/flake8
 
 copy:
