@@ -1,16 +1,13 @@
 DIR=$(HOME)/dotfiles
 
-polaris: symlinks copy apt-get vim-setup zsh zsh-polaris tmux-deb
-deb: symlinks copy apt-get vim vim-setup zsh tmux-deb
+polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris
+deb: symlinks copy apt-get vim vim-setup zsh zsh-python3
 
 symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig
 	@ln -sf $(DIR)/gitignore $(HOME)/.gitignore
 	@ln -sf $(DIR)/vimrc $(HOME)/.vimrc
-	@ln -sf $(DIR)/zprofile $(HOME)/.zprofile
-	if [ ! -d $(HOME)/.config ]; then \
-		@mkdir $(HOME)/.config; \
-	fi
+	@mkdir -p $(HOME)/.config
 	@ln -sf $(DIR)/flake8 $(HOME)/.config/flake8
 
 copy:
@@ -23,10 +20,10 @@ copy:
 
 apt-get:
 	sudo apt-get install software-properties-common python-software-properties
-	sudo add-apt-repository ppa:git-core/ppa
+	sudo add-apt-repository -y ppa:git-core/ppa
 	sudo apt-get update
-	sudo apt-get remove vim vim-runtime gvim
-	sudo apt-get install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake
+	sudo apt-get -y remove vim vim-runtime gvim
+	sudo apt-get -y install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake flake8
 
 vim:
 	if [ ! -d $(HOME)/.vimsource ]; then \
@@ -65,11 +62,18 @@ vim-setup: symlinks
 	if [ ! -d $(HOME)/.vim/bundle/Vundle.vim ]; then \
 		git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim; \
 	fi
-	vim +PluginInstall +qall
-	mkdir $(HOME)/.vim/backups
+	@echo | echo | vim +PluginInstall +qall
+	@mkdir -p $(HOME)/.vim/backups
 
 zsh: symlinks
 	sudo chsh -s /bin/zsh $(USER)
+
+zsh-python3: copy
+	@echo "" >> $(HOME)/.zshrc
+	@echo "# Python3 specific settings" >> $(HOME)/.zshrc
+	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $(HOME)/.zshrc
+	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
+	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
 
 zsh-polaris: copy
 	@echo "" >> $(HOME)/.zshrc

@@ -11,18 +11,13 @@ export TERM="xterm-256color"
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
 
-# Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-#}}}
-
 # Aliases {{{
 if [ -x /usr/bin/dircolors ]; then
 	alias ls="ls -h --color=auto"
 	alias dir="dir -h --color=auto"
 	alias grep='grep --color=auto'
 fi
-if [ -x /usr/local/bin/ipython ]; then
+if which ipython > /dev/null; then
     alias python="ipython"
 fi
 alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
@@ -45,7 +40,9 @@ alias emacs="emacs -nw"
 alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=Anaconda"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
-alias vagrantsshweb="cd $HOME/polaris/provisioning && vagrant ssh web"
+alias wopolaris="cd $HOME/polaris/provisioning && vagrant ssh web"
+alias rspolaris="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'source ~/.zshrc; workon polaris;sudo /etc/init.d/apache2 restart;python /home/webdev/websites/polaris/pysrc/manage.py runserver_plus'"
+alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'source ~/.zshrc; workon polaris;python /home/webdev/websites/polaris/pysrc/manage.py shell'"
 alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
 alias pweb="ssh webdev@pweb1"
 alias polaris="cd $HOME/development/polaris/pysrc"
