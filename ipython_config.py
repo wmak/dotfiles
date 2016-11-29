@@ -16,7 +16,6 @@ c.TerminalInteractiveShell.highlighting_style = 'vim'
 # Class used to generate Prompt token for prompt_toolkit
 from IPython.terminal.prompts import Prompts, Token
 class MyPrompt(Prompts):
-    print(dir(Prompts))
     def in_prompt_tokens(self, cli=None):
         return [
                 (Token.Prompt, 'In <'),
