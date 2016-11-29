@@ -11,11 +11,6 @@ export TERM="xterm-256color"
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
 
-# Go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-#}}}
-
 # Aliases {{{
 if [ -x /usr/bin/dircolors ]; then
 	alias ls="ls -h --color=auto"
