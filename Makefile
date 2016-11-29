@@ -7,7 +7,6 @@ symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig
 	@ln -sf $(DIR)/gitignore $(HOME)/.gitignore
 	@ln -sf $(DIR)/vimrc $(HOME)/.vimrc
-	@ln -sf $(DIR)/zprofile $(HOME)/.zprofile
 	@mkdir -p $(HOME)/.config
 	@ln -sf $(DIR)/flake8 $(HOME)/.config/flake8
 
