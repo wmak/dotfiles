@@ -18,14 +18,14 @@ from IPython.terminal.prompts import Prompts, Token
 class MyPrompt(Prompts):
     def in_prompt_tokens(self, cli=None):
         return [
-                (Token.Prompt, 'In <'),
+                (Token.Prompt, 'In {LOCL}<'),
                 (Token.PromptNum, str(self.shell.execution_count)),
                 (Token.Prompt, '>: '),
         ]
 
     def out_prompt_tokens(self, cli=None):
         return [
-                (Token.Prompt, 'Out<'),
+                (Token.Prompt, 'Out{LOCL}<'),
                 (Token.PromptNum, str(self.shell.execution_count)),
                 (Token.Prompt, '>: '),
         ]
