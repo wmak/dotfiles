@@ -20,7 +20,7 @@ copy:
 	@echo "export LANG=en_US.UTF-8" >> $(HOME)/.zshrc
 
 apt-get:
-	sudo apt-get install software-properties-common python-software-properties
+	sudo apt-get -y install software-properties-common python-software-properties
 	sudo add-apt-repository -y ppa:git-core/ppa
 	sudo apt-get update
 	sudo apt-get -y remove vim vim-runtime gvim
