@@ -14,6 +14,7 @@ copy:
 	@cp -fH $(DIR)/zshrc $(HOME)/.zshrc
 	@cp -fH $(DIR)/tmux.conf $(HOME)/.tmux.conf
 	@cp -fH $(DIR)/Xresources $(HOME)/.Xresources
+	@mkdir -p $(HOME)/.ipython/profile_default
 	@cp -fH $(DIR)/ipython_config.py $(HOME)/.ipython/profile_default/ipython_config.py
 	@echo "export LC_ALL=en_US.UTF-8" >> $(HOME)/.zshrc
 	@echo "export LANG=en_US.UTF-8" >> $(HOME)/.zshrc
