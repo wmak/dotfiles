@@ -17,9 +17,6 @@ if [ -x /usr/bin/dircolors ]; then
 	alias dir="dir -h --color=auto"
 	alias grep='grep --color=auto'
 fi
-if which ipython > /dev/null; then
-    alias python="ipython"
-fi
 alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias leftmon="xrandr --output DP1 --auto --left-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
@@ -44,6 +41,7 @@ alias wopolaris="cd $HOME/polaris/provisioning && vagrant ssh web"
 alias rspolaris="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'source ~/.zshrc; workon polaris;sudo /etc/init.d/apache2 restart;python /home/webdev/websites/polaris/pysrc/manage.py runserver_plus'"
 alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'source ~/.zshrc; workon polaris;python /home/webdev/websites/polaris/pysrc/manage.py shell'"
 alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
+alias prodshell="ssh webdev@pweb1 -t 'bash -ic pshell'"
 alias pweb="ssh webdev@pweb1"
 alias polaris="cd $HOME/development/polaris/pysrc"
 alias pyclean="find . -name '*.pyc' -delete"
