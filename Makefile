@@ -83,7 +83,9 @@ zsh-polaris: copy
 	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
 	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
 	@echo "export PYTHONPATH=:/home/webdev/websites/polaris/pysrc/apps:/home/webdev/websites/polaris/pysrc/apps/external:/home/webdev/websites/polaris/pysrc/extra_settings" >> $(HOME)/.zshrc
+	@echo "export PYTHONSTARTUP=/home/webdev/websites/polaris/scripts/shell_import.py" >> $(HOME)/.zshrc
 	@echo "alias wopolaris='workon polaris;cd /home/webdev/websites/polaris/pysrc'" >> $(HOME)/.zshrc
+	@echo "alias pshell='workon polaris;cd /home/webdev/websites/polaris/pysrc;python ./manage.py shell'" >> $(HOME)/.zshrc
 	@echo "alias rspolaris='workon polaris;sudo /etc/init.d/apache2 restart;python /home/webdev/websites/polaris/pysrc/manage.py runserver_plus'" >> $(HOME)/.zshrc
 	@echo "wopolaris" >> $(HOME)/.zshrc
 

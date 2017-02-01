@@ -5,7 +5,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-sleuth'
 Plugin 'airblade/vim-gitgutter'
@@ -15,10 +15,14 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
 Plugin 'wmak/fairyfloss.vim'
+Plugin 'janko-m/vim-test'
 call vundle#end() 
 
 " switch buffers without saving
 set hidden
+
+" Tell vim-test to do django
+let test#python#runner = 'djangotest'
 
 " bufferline settings
 let g:bufferline_echo = 0
@@ -48,7 +52,7 @@ set backspace=indent,eol,start
 " highlight 91 and onward so 90 is the last valid column
 set textwidth=90
 autocmd bufreadpre *.html setlocal textwidth=0
-set colorcolumn=+1,+21
+set colorcolumn=+1,+31
 
 " spellcheck git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
