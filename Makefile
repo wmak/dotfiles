@@ -1,6 +1,6 @@
 DIR=$(HOME)/dotfiles
 
-polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris
+polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris node
 deb: symlinks copy apt-get vim vim-setup zsh zsh-python3
 
 symlinks:
@@ -24,7 +24,10 @@ apt-get:
 	sudo add-apt-repository -y ppa:git-core/ppa
 	sudo apt-get update
 	sudo apt-get -y remove vim vim-runtime gvim
-	sudo apt-get -y install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake flake8
+	sudo apt-get -y install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake flake8 nodejs
+
+node:
+	sudo npm install -g jshint
 
 vim:
 	if [ ! -d $(HOME)/.vimsource ]; then \

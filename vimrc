@@ -57,8 +57,11 @@ set colorcolumn=+1,+31
 " spellcheck git commits
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" syntastic
-let g:syntastic_python_checkers = ['flake8']
+" ale
+let g:ale_linters = {
+\   'python': ['flake8'],
+\   'JavaScript': ['jshint'],
+\}
 
 " speed up buffers?
 augroup EditVim
@@ -95,8 +98,8 @@ set pastetoggle=<F2>
 " remap <F3> to show whitespace
 nnoremap <F3> :set list!<cr>
 
-" go fmt
-nnoremap <F4> :w<cr>:!go fmt % <cr>:edit<cr>
+" TestNearest
+nnoremap <F4> :w<cr>:TestNearest<cr>
 
 " map <F8> to spellcheck
 nnoremap <F8> :set spelllang=en_ca spell<cr>
