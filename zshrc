@@ -17,18 +17,12 @@ if [ -x /usr/bin/dircolors ]; then
 	alias dir="dir -h --color=auto"
 	alias grep='grep --color=auto'
 fi
-if which ipython > /dev/null; then
-    alias python="ipython"
-fi
 alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias leftmon="xrandr --output DP1 --auto --left-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
 alias 'wakethefuckup╯(´Д´)╯彡┻━┻'="xset dpms force off ;"
 alias offmon="xrandr --output DP1 --off"
 alias reload-zsh=". $HOME/.zshrc"
-alias portal-test-server="ssh 10.250.100.100"
-alias jenkins-mri="ssh 10.250.100.20"
-alias jarvis-mri="ssh 10.250.100.21"
 alias Osiris="ssh 192.168.0.40"
 alias murder="kill -9"
 alias die="kill -15"
@@ -41,9 +35,10 @@ alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=An
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
 alias wopolaris="cd $HOME/polaris/provisioning && vagrant ssh web"
-alias rspolaris="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'source ~/.zshrc; workon polaris;sudo /etc/init.d/apache2 restart;python /home/webdev/websites/polaris/pysrc/manage.py runserver_plus'"
-alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'source ~/.zshrc; workon polaris;python /home/webdev/websites/polaris/pysrc/manage.py shell'"
+alias rspolaris="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic rspolaris'"
+alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic pshell'"
 alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
+alias prodshell="ssh webdev@pweb1 -t 'bash -ic pshell'"
 alias pweb="ssh webdev@pweb1"
 alias polaris="cd $HOME/development/polaris/pysrc"
 alias pyclean="find . -name '*.pyc' -delete"
