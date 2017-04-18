@@ -16,6 +16,7 @@ Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
 Plugin 'wmak/fairyfloss.vim'
 Plugin 'janko-m/vim-test'
+Plugin 'tpope/vim-fugitive'
 call vundle#end() 
 
 " switch buffers without saving
@@ -50,7 +51,7 @@ set nocompatible
 set backspace=indent,eol,start
 
 " highlight 91 and onward so 90 is the last valid column
-set textwidth=90
+set textwidth=120
 autocmd bufreadpre *.html setlocal textwidth=0
 set colorcolumn=+1,+31
 
@@ -101,7 +102,8 @@ nnoremap <F3> :set list!<cr>
 " TestNearest
 nnoremap <F4> :w<cr>:TestNearest<cr>
 
-" map <F8> to spellcheck
+" Spellchecking
+set spell spelllang=en_us
 nnoremap <F8> :set spelllang=en_ca spell<cr>
 
 " Easier entry to commmand-mode
