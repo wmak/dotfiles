@@ -19,6 +19,9 @@ Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-fugitive'
 call vundle#end() 
 
+" ctags
+set tags=~/.mytags
+
 " switch buffers without saving
 set hidden
 
@@ -90,6 +93,13 @@ set bg=dark
 " Use qq to escape
 inoremap qq <ESC>
 
+" I'm a bad person and like emacs nav
+inoremap <C-A> <Home>
+inoremap <C-B> <Left>
+inoremap <C-E> <End>
+inoremap <C-F> <Right>
+inoremap <C-_> <Esc>ui
+
 " Bind F1 to toggle folding
 nnoremap <F1> :set foldenable!<cr>
 
@@ -112,6 +122,13 @@ noremap ; :
 " rebing backslash and bar for F and T
 noremap <BSLASH> ;
 noremap <BAR> ,
+
+" Viewport laziness
+noremap <S-Up> <C-W>k
+noremap <S-Down> <C-W>j
+noremap <S-Left> <C-W>h
+noremap <S-Right> <C-W>l
+
 
 " Ignore swp and pyc files
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
