@@ -21,10 +21,12 @@ copy:
 
 apt-get:
 	sudo apt-get -y install software-properties-common python-software-properties
+	sudo apt-add-repository -y ppa:chris-lea/node.js
 	sudo add-apt-repository -y ppa:git-core/ppa
 	sudo apt-get update
 	sudo apt-get -y remove vim vim-runtime gvim
-	sudo apt-get -y install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake flake8 nodejs
+	sudo apt-get -y install git zsh tmux htop ncurses-dev libevent-dev libncurses-dev build-essential autotools-dev automake nodejs
+	
 
 node:
 	sudo npm install -g jshint
