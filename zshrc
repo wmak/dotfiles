@@ -38,10 +38,13 @@ alias wopolaris="cd $HOME/polaris/provisioning && vagrant ssh web"
 alias rspolaris="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic rspolaris'"
 alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic pshell'"
 alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
-alias prodshell="ssh webdev@pweb1 -t 'bash -ic pshell'"
-alias pweb="ssh webdev@pweb1"
+export FULL_NAME='William Mak'
+alias prodshell="mosh webdev@pweb1 -- bash -ic 'export FULL_NAME=\"William Mak\" && pshell'"
+alias pweb="mosh webdev@pweb1 -- bash -ic 'tmux a -t wmak'"
+alias pwebssh="ssh webdev@pweb1 -t bash -ic 'tmux a -t wmak'"
 alias polaris="cd $HOME/development/polaris/pysrc"
 alias pyclean="find . -name '*.pyc' -delete"
+alias ltest="$HOME/development/ltest/ltest"
 
 function workon(){
 	if [ -f $HOME/.workon/$@ ]; then

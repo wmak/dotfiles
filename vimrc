@@ -17,10 +17,16 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'wmak/fairyfloss.vim'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-fugitive'
+Plugin 'mxw/vim-jsx'
 call vundle#end() 
 
 " ctags
 set tags=~/.mytags
+
+" react
+let g:jsx_ext_required = 0
+let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
 
 " switch buffers without saving
 set hidden
