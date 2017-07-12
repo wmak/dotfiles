@@ -1,7 +1,7 @@
 DIR=$(HOME)/dotfiles
 
 polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris node
-deb: symlinks copy apt-get vim vim-setup zsh zsh-python3
+deb: symlinks copy apt-get vim vim-setup zsh python3
 
 symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig
@@ -74,6 +74,10 @@ vim-setup: symlinks
 
 zsh: symlinks
 	sudo chsh -s /bin/zsh $(USER)
+
+python3: zsh-python
+	sudo apt-get install python3-pip
+	@echo "alias pip=\"pip3\"" >> $(HOME)/.zshrc
 
 zsh-python3: copy
 	@echo "" >> $(HOME)/.zshrc
