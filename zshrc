@@ -7,6 +7,7 @@ export PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
 export EDITOR="vim"
 export VISUAL="vim"
 export TERM="xterm-256color"
+export LANG=en_US.UTF-8
 
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
@@ -34,8 +35,8 @@ alias emacs="emacs -nw"
 alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=Anaconda"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
-alias wopolaris="cd $HOME/polaris/provisioning && vagrant ssh web"
-alias rspolaris="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic rspolaris'"
+alias wopolaris="ssh vagrant@33.0.0.10"
+alias rspolaris="ssh vagrant@33.0.0.10 'zsh -ic rspolaris'"
 alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic pshell'"
 alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
 export FULL_NAME='William Mak'
@@ -54,6 +55,31 @@ function workon(){
 		source /usr/local/bin/virtualenvwrapper.sh
 		workon $@
 	fi
+}
+
+function notify(){
+    if hash notify-send 2>/dev/null; then
+	notify-send $1 $2 --urgency=${3:-normal} 
+    elif hash terminal-notifier 2>/dev/null; then
+	echo $1 | terminal-notifier -sound default
+    else
+	echo $1
+    fi
+}
+
+function runpolaris(){
+    while :
+	    do
+		    rspolaris |
+			    while IFS= read -r line
+				    do
+					    if [ "$line" = "Development server is running at http://127.0.0.1:8000/" ]; then
+						    notify "Polaris Server" "Restarted" low
+					    fi
+				    done
+		    notify "Polaris Server" "Crashed" critical
+		    sleep 3
+	    done
 }
 
 function cdls(){
