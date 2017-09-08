@@ -61,7 +61,7 @@ function notify(){
     if hash notify-send 2>/dev/null; then
 	notify-send $1 $2 --urgency=${3:-normal} 
     elif hash terminal-notifier 2>/dev/null; then
-	echo $1 | terminal-notifier -sound default
+	echo $2 | terminal-notifier -sound default
     else
 	echo $1
     fi
