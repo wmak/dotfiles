@@ -1,6 +1,7 @@
 DIR=$(HOME)/dotfiles
 
 polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris node
+glingo: symlinks copy apt-get vim vim-setup zsh zsh-glingo
 deb: symlinks copy apt-get vim vim-setup zsh python3
 
 symlinks:
@@ -99,3 +100,15 @@ zsh-polaris: copy
 	@echo "alias rspolaris='workon polaris;sudo /etc/init.d/apache2 restart;python /home/webdev/websites/polaris/pysrc/manage.py runserver_plus'" >> $(HOME)/.zshrc
 	@echo "wopolaris" >> $(HOME)/.zshrc
 
+zsh-glingo: copy
+	@echo "" >> $(HOME)/.zshrc
+	@echo "# Polaris specific settings" >> $(HOME)/.zshrc
+	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python" >> $(HOME)/.zshrc
+	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
+	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
+	@echo "export PYTHONPATH=:/home/ubuntu/glingo/glingo/apps:/home/ubuntu/glingo" >> $(HOME)/.zshrc
+	@echo "export PYTHONSTARTUP=/home/ubuntu/glingo/scripts/shell_import.py" >> $(HOME)/.zshrc
+	@echo "alias woglingo='workon glingo;cd /home/ubuntu/glingo/glingo" >> $(HOME)/.zshrc
+	@echo "alias pshell='woglingo; python ./manage.py shell'" >> $(HOME)/.zshrc
+	@echo "alias rsglingo='woglingo; sudo service apache2 restart;./manage.py runserver_plus'" >> $(HOME)/.zshrc
+	@echo "woglingo" >> $(HOME)/.zshrc
