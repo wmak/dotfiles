@@ -47,6 +47,7 @@ let g:airline_section_b = ''
 let g:airline_section_x = ''
 let g:airline_section_y = ''
 let g:airline_section_z = airline#section#create(['%c'])
+let g:airline_extensions = ['bufferline']
 
 " better brace matching
 runtime macros/matchit.vim
