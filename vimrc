@@ -204,6 +204,7 @@ set t_Co=256
 set t_ut=
 colorscheme afterglow
 hi Normal guibg=NONE ctermbg=NONE
+set notermguicolors
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
