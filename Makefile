@@ -108,7 +108,7 @@ zsh-glingo: copy
 	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
 	@echo "export PYTHONPATH=:/home/ubuntu/glingo/glingo/apps:/home/ubuntu/glingo" >> $(HOME)/.zshrc
 	@echo "export PYTHONSTARTUP=/home/ubuntu/glingo/scripts/shell_import.py" >> $(HOME)/.zshrc
-	@echo "alias woglingo='workon glingo;cd /home/ubuntu/glingo/glingo" >> $(HOME)/.zshrc
+	@echo "alias woglingo='workon glingo;cd /home/ubuntu/glingo/glingo'" >> $(HOME)/.zshrc
 	@echo "alias pshell='woglingo; python ./manage.py shell'" >> $(HOME)/.zshrc
-	@echo "alias rsglingo='woglingo; sudo service apache2 restart;./manage.py runserver_plus'" >> $(HOME)/.zshrc
+	@echo "alias rsglingo='woglingo; sudo service nginx restart;./manage.py runserver_plus'" >> $(HOME)/.zshrc
 	@echo "woglingo" >> $(HOME)/.zshrc
