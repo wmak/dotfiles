@@ -9,24 +9,21 @@ Plugin 'w0rp/ale'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-sleuth'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
-Plugin 'wmak/fairyfloss.vim'
+Plugin 'danilo-augusto/vim-afterglow'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mxw/vim-jsx'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end() 
 
-" ctags
-set tags=~/.mytags
-
-" react
-let g:jsx_ext_required = 0
-let g:syntastic_javascript_checkers = ['jsxhint']
-let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
+" NerdTree
+map <C-a> :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=1
 
 " switch buffers without saving
 set hidden
@@ -70,7 +67,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 " ale
 let g:ale_linters = {
 \   'python': ['flake8'],
-\   'JavaScript': ['jshint'],
+\   'javascript': ['eslint'],
 \}
 
 " speed up buffers?
@@ -119,7 +116,7 @@ nnoremap <F3> :set list!<cr>
 nnoremap <F4> :w<cr>:TestNearest<cr>
 
 " Spellchecking
-set spell spelllang=en_us
+" set spell spelllang=en_us
 nnoremap <F8> :set spelllang=en_ca spell<cr>
 
 " Easier entry to commmand-mode
@@ -184,6 +181,7 @@ set wildmode=longest:full,full          " Show completions on first <TAB> and
 set wildignore=*.o,*.obj                " object files
 set wildignore+=*.class                 " Java class files
 set wildignore+=*.pyc                   " python compiled files
+set wildignore+=*.meta                  " unity meta
 set wildignore+=*~,#*#,*.swp            " all other backup files
 " tmp folder and log folders
 set wildignore+=log/**
@@ -203,8 +201,8 @@ endif
 set termguicolors
 set t_Co=256
 set t_ut=
-colorscheme fairyfloss
-hi Normal ctermbg=NONE
+colorscheme afterglow
+hi Normal guibg=NONE ctermbg=NONE
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"

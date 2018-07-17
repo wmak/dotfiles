@@ -8,6 +8,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export TERM="xterm-256color"
 export LANG=en_US.UTF-8
+export SLACKHANDLE="wmak"
 
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
@@ -35,14 +36,17 @@ alias emacs="emacs -nw"
 alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=Anaconda"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
+alias uppolaris="cd ~/polaris/provisioning; vagrant up web db_primary"
 alias wopolaris="ssh vagrant@33.0.0.10"
 alias rspolaris="ssh vagrant@33.0.0.10 'zsh -ic rspolaris'"
+alias woglingo="ssh ubuntu@34.0.0.10"
+alias rsglingo="ssh ubuntu@34.0.0.10 'zsh -ic rsglingo'"
 alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic pshell'"
 alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
 export FULL_NAME='William Mak'
 alias prodshell="mosh webdev@pweb1 -- bash -ic 'export FULL_NAME=\"William Mak\" && pshell'"
 alias pweb="mosh webdev@pweb1 -- bash -ic 'tmux a -t wmak'"
-alias pwebssh="ssh webdev@pweb1 -t bash -ic 'tmux a -t wmak'"
+alias pwebssh="ssh webdev@pweb1 -t \"bash -ic 'tmux a -t wmak'\""
 alias polaris="cd $HOME/development/polaris/pysrc"
 alias pyclean="find . -name '*.pyc' -delete"
 alias ltest="$HOME/development/ltest/ltest"
@@ -208,42 +212,44 @@ function git_prompt_info() {
 }
 
 ord=`printf '%d' "'$HOST"`
+host_name=$HOST
 
 if [ $HOST = "Rhea" ]; then
     ord=199
 elif [ $HOST = "GTOR-03013" ]; then
-    ord=13
+    host_name='WorkMac'
+    ord=171
 fi
 
 function virtualenv_info() {
-	[[ -n $VIRTUAL_ENV ]] && 
-	echo -n "%{"%F{$ord}"%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{"%F{$ord}"%}Ↄ"
+    [[ -n $VIRTUAL_ENV ]] && 
+    echo -n "%{"%F{$ord}"%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{"%F{$ord}"%}Ↄ"
 }
 
 precmd() {
-	PROMPT=%F{$ord}"╭───Ⅽ"
-	PROMPT+="%{$fg[green]%}${USER}"
-	PROMPT+="%{$fg[grey]%}%B@%b"
-	PROMPT+="%{$fg[yellow]%}${HOST}"
-	PROMPT+=%F{$ord}"Ↄ──Ⅽ"
-	PROMPT+="%{$fg[blue]%}%2d"
-	PROMPT+=%F{$ord}"Ↄ──Ⅽ"
-	PROMPT+="%{$fg[cyan]%}%T"
-	PROMPT+=%F{$ord}"Ↄ──Ⅽ"
-	PROMPT+=%F{$ord}"%?"
-	PROMPT+=%F{$ord}"Ↄ"
-	PROMPT+=$(virtualenv_info)
-	PROMPT+=$'\n'"╰─‹"
-	PROMPT+="%{$reset_color%}%b"
-	PROMPT+=$(git_prompt_info)
-	PROMPT+=%F{$ord}"› "
-	PROMPT+=%F{255}%b
+    PROMPT=%F{$ord}"╭───Ⅽ"
+    PROMPT+="%{$fg[green]%}${USER}"
+    PROMPT+="%{$fg[grey]%}%B@%b"
+    PROMPT+="%{$fg[yellow]%}${host_name}"
+    PROMPT+=%F{$ord}"Ↄ──Ⅽ"
+    PROMPT+="%{$fg[blue]%}%2d"
+    PROMPT+=%F{$ord}"Ↄ──Ⅽ"
+    PROMPT+="%{$fg[cyan]%}%T"
+    PROMPT+=%F{$ord}"Ↄ──Ⅽ"
+    PROMPT+=%F{$ord}"%?"
+    PROMPT+=%F{$ord}"Ↄ"
+    PROMPT+=$(virtualenv_info)
+    PROMPT+=$'\n'"╰─‹"
+    PROMPT+="%{$reset_color%}%b"
+    PROMPT+=$(git_prompt_info)
+    PROMPT+=%F{$ord}"› "
+    PROMPT+=%F{255}%b
 }
 
 #}}}
 
 # Plugins {{{
-	source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #}}}
 
 # dircolors config. {{{
@@ -258,3 +264,7 @@ fi
 
 # If there's a development folder cd to it.
 [[ -e $HOME/development ]] && cd $HOME/development
+
+# Setup ssh agent
+ssh-agent -s > /dev/null
+ssh-add 2> /dev/null
