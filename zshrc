@@ -203,12 +203,15 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 
 function git_prompt_info() {
-	vcs_info #Get version control system info
-	[[ "${vcs_info_msg_2_}" != "git" ]] && return
-	[[ -n "${vcs_info_msg_1_}" ]] \
-		&& echo -n "%{$fg[red]%}" \
-		|| echo -n "%{$fg[blue]%}"
-	echo ${vcs_info_msg_0_}"%{$reset_color%}"
+	branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+	if [ $? -eq 0 ];
+	then
+	    diff=$(git diff --no-ext-diff --quiet --exit-code)
+	    [[ $? -eq 1 ]] \
+		    && echo -n "%{$fg[red]%}" \
+		    || echo -n "%{$fg[blue]%}"
+	    echo "("${branch}")%{$reset_color%}"
+	fi
 }
 
 ord=`printf '%d' "'$HOST"`
