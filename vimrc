@@ -13,7 +13,7 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
-Plugin 'danilo-augusto/vim-afterglow'
+Plugin 'wmak/fairyfloss.vim'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mxw/vim-jsx'
@@ -202,9 +202,8 @@ endif
 set termguicolors
 set t_Co=256
 set t_ut=
-colorscheme afterglow
-hi Normal guibg=NONE ctermbg=NONE
-set notermguicolors
+colorscheme fairyfloss
+hi Normal ctermbg=NONE
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
