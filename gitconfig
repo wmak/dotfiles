@@ -18,16 +18,16 @@
 	insteadOf	= gitlab
 
 [core]
-	editor		= "vim"
+	editor = vim
 	excludesfile	= "~/.gitignore"
 
 [color]
 	ui               = true
 
 [color "branch"]
-    current          = green bold
-    local            = blue
-    remote           = yellow
+	current          = green bold
+	local            = blue
+	remote           = yellow
 
 [alias]
 	l			= log -n20
@@ -44,6 +44,7 @@
 
 [merge]
 	tool		= vimdiff
+
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
