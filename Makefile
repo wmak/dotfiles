@@ -3,6 +3,7 @@ DIR=$(HOME)/dotfiles
 polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris node
 glingo: symlinks copy apt-get vim vim-setup zsh zsh-glingo
 deb: symlinks copy apt-get vim vim-setup zsh python3
+docker: symlinks copy
 
 symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig

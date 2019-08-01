@@ -44,12 +44,58 @@ alias rsglingo="ssh ubuntu@34.0.0.10 'zsh -ic rsglingo'"
 alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic pshell'"
 alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
 export FULL_NAME='William Mak'
-alias prodshell="mosh webdev@pweb1 -- bash -ic 'export FULL_NAME=\"William Mak\" && pshell'"
+alias prodshell="ssh webdev@pweb1 -t \"bash -ic 'export FULL_NAME=\\\"William Mak\\\" && pshell'\""
 alias pweb="mosh webdev@pweb1 -- bash -ic 'tmux a -t wmak'"
 alias pwebssh="ssh webdev@pweb1 -t \"bash -ic 'tmux a -t wmak'\""
-alias polaris="cd $HOME/development/polaris/pysrc"
 alias pyclean="find . -name '*.pyc' -delete"
-alias ltest="$HOME/development/ltest/ltest"
+alias polaris="$HOME/polaris/polaris/polaris.sh"
+
+function ltest(){
+    # Usage on improper input
+    if [ $# -lt 2 ]; then
+	echo "usage: ltest <file> <command>\n\nAn example use of ltest would be:"
+	echo "   ltest ./go-raptor go run"
+	echo "\n ltest will work on either a file or an entire folder"
+	echo "for example\n    ltest ./ go run"
+	echo "will run whenever there's a change in the current directory"
+	return 1
+    fi
+
+    # Store the name of the file and shift variables
+    file=$1
+    shift
+
+    # Check that the file being checked actually exists
+    if [ -f $file ]; then
+	echo "Starting ltest on the file: "$file
+    elif [ -d $file ]; then
+	echo "Starting ltest on the folder: "$file
+    else
+	echo $file" is is not a file or folder"
+	return 1
+    fi
+
+    # Store the intial timestamp for the file
+    if [ -x /usr/local/bin/gdate ]; then
+        alias timecmd=gdate
+    else
+        alias timecmd=date
+    fi
+    timestamp=`timecmd +%s -r $file`
+
+    # Main execution loop, detect if file has changed within the last 2 seconds.
+    while :
+    do
+	if [ $(expr `timecmd +%s -r $file` - $timestamp) -gt 0 ]; then
+	    timestamp=`timecmd +%s -r $file`
+	    # Check that the file isn't being modified
+	    if [ -f $file ] || [ -d $file ]; then
+		clear && $*
+	    fi
+	fi
+	sleep 2
+    done
+}
 
 function workon(){
 	if [ -f $HOME/.workon/$@ ]; then
@@ -253,6 +299,14 @@ precmd() {
 
 # Plugins {{{
     source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    # Extra stuff for okta
+    # #OktaAWSCLI
+    if [[ -f "$HOME/.okta/bash_functions" ]]; then
+	. "$HOME/.okta/bash_functions"
+    fi
+    if [[ -d "$HOME/.okta/bin" && ":$PATH:" != *":$HOME/.okta/bin:"* ]]; then
+	PATH="$HOME/.okta/bin:$PATH"
+    fi
 #}}}
 
 # dircolors config. {{{
