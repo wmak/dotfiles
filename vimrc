@@ -14,6 +14,8 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
 Plugin 'danilo-augusto/vim-afterglow'
+Plugin 'wmak/fairyfloss.vim'
+Plugin 'yggdroot/indentline'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mxw/vim-jsx'
@@ -92,10 +94,6 @@ set listchars=eol:↩,tab:▶▷,trail:▷,extends:>,precedes:<
 
 " tell vim I have a dark background
 set bg=dark
-
-" Keybindings {{{
-" Use qq to escape
-inoremap qq <ESC>
 
 " I'm a bad person and like emacs nav
 inoremap <C-A> <Home>
@@ -199,12 +197,10 @@ if has("persistent_undo")
 endif
 
 " Colour theme
-set termguicolors
 set t_Co=256
 set t_ut=
-colorscheme afterglow
-hi Normal guibg=NONE ctermbg=NONE
-set notermguicolors
+colorscheme fairyfloss
+set termguicolors
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
