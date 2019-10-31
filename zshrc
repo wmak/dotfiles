@@ -8,7 +8,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export TERM="xterm-256color"
 export LANG=en_US.UTF-8
-export SLACKHANDLE="wmak"
+export PYTHONSTARTUP=$HOME/dotfiles/pythonstartup.py
 
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
@@ -48,16 +48,29 @@ alias prodshell="ssh webdev@pweb1 -t \"bash -ic 'export FULL_NAME=\\\"William Ma
 alias pweb="mosh webdev@pweb1 -- bash -ic 'tmux a -t wmak'"
 alias pwebssh="ssh webdev@pweb1 -t \"bash -ic 'tmux a -t wmak'\""
 alias pyclean="find . -name '*.pyc' -delete"
-alias polaris="$HOME/polaris/polaris/polaris.sh"
+alias ip="ipython2"
+alias opsys="$HOME/polaris/polaris/opsys.sh"
+alias polaris="$HOME/polaris/polaris/opsys.sh polaris"
+alias lumos="$HOME/polaris/polaris/opsys.sh lumos"
+alias glingo="$HOME/polaris/polaris/opsys.sh glingo"
+
+print_info () {
+	printf "\e[1;33m$1\n\e[1;0m"
+}
+
+print_error() {
+	printf "\e[1;31m$1\n\e[1;0m"
+}
 
 function ltest(){
     # Usage on improper input
     if [ $# -lt 2 ]; then
-	echo "usage: ltest <file> <command>\n\nAn example use of ltest would be:"
-	echo "   ltest ./go-raptor go run"
-	echo "\n ltest will work on either a file or an entire folder"
-	echo "for example\n    ltest ./ go run"
-	echo "will run whenever there's a change in the current directory"
+	print_error "usage: ltest <file> <command>\n"
+	print_error "An example use of ltest would be:"
+	print_error "\tltest ./go-raptor go run\n"
+	print_error "ltest will work on either a file or an entire folder for example:"
+	print_error "\tltest ./ go run"
+	print_error "will run whenever there's a change in the current directory"
 	return 1
     fi
 
@@ -67,11 +80,11 @@ function ltest(){
 
     # Check that the file being checked actually exists
     if [ -f $file ]; then
-	echo "Starting ltest on the file: "$file
+	print_info "Starting ltest on the file: "$file
     elif [ -d $file ]; then
-	echo "Starting ltest on the folder: "$file
+	print_info "Starting ltest on the folder: "$file
     else
-	echo $file" is is not a file or folder"
+	print_error $file" is is not a file or folder"
 	return 1
     fi
 
@@ -90,11 +103,14 @@ function ltest(){
 	    timestamp=`timecmd +%s -r $file`
 	    # Check that the file isn't being modified
 	    if [ -f $file ] || [ -d $file ]; then
-		clear && $*
+		clear && print_info "Starting... " && $* && print_info "Finished."
 	    fi
 	fi
 	sleep 2
     done
+}
+function lptest() {
+    ltest $1 ipython2 $1
 }
 
 function workon(){
@@ -107,35 +123,6 @@ function workon(){
 	fi
 }
 
-function notify(){
-    if hash notify-send 2>/dev/null; then
-	notify-send $1 $2 --urgency=${3:-normal} 
-    elif hash terminal-notifier 2>/dev/null; then
-	echo $2 | terminal-notifier -sound default
-    else
-	echo $1
-    fi
-}
-
-function runpolaris(){
-    while :
-	    do
-		    rspolaris |
-			    while IFS= read -r line
-				    do
-					    if [ "$line" = "Development server is running at http://127.0.0.1:8000/" ]; then
-						    notify "Polaris Server" "Restarted" low
-					    fi
-				    done
-		    notify "Polaris Server" "Crashed" critical
-		    sleep 3
-	    done
-}
-
-function cdls(){
-	cd $@ && ls
-}
-alias cl="cdls"
 # }}}
 
 # autoloads {{{
