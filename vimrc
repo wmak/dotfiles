@@ -13,7 +13,6 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'bling/vim-bufferline'
 Plugin 'vim-airline/vim-airline'
-Plugin 'danilo-augusto/vim-afterglow'
 Plugin 'wmak/fairyfloss.vim'
 Plugin 'yggdroot/indentline'
 Plugin 'janko-m/vim-test'
@@ -21,6 +20,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mxw/vim-jsx'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'sheerun/vim-polyglot'
 call vundle#end() 
 
 " NerdTree
@@ -148,10 +148,6 @@ set incsearch
 " recognize that md is markdown not modula
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" vim-latexsuite
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor = "latex"
-
 " statusline.
 set laststatus=2
 set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L
@@ -164,7 +160,7 @@ command! -nargs=? -complete=file E :Explore <args>
 " Folds {{{
 set foldmethod=marker          " Fold based on marker
 set foldnestmax=3              " Deepest fold is 3 levels
-set foldenable               " Dont fold by default
+set foldlevel=99               " Dont fold by default
 set foldopen=block,hor,insert  " Which commands trigger autounfold
 set foldopen+=jump,mark
 set foldopen+=percent,search
@@ -175,7 +171,6 @@ set foldopen+=quickfix,tag,undo
 set completeopt=longest,menuone
 set wildmenu                            " C-n and C-p scroll through matches
 set wildmode=longest:full,full          " Show completions on first <TAB> and
-                                        " start cycling through on second <TAB>
 "stuff to ignore when tab completing
 set wildignore=*.o,*.obj                " object files
 set wildignore+=*.class                 " Java class files
