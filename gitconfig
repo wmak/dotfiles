@@ -19,32 +19,32 @@
 
 [core]
 	editor		= "vim"
-	excludesfile	= "~/.gitignore"
+	excludesfile= "~/.gitignore"
 
 [color]
-	ui               = true
+	ui			= true
 
 [color "branch"]
-    current          = green bold
-    local            = blue
-    remote           = yellow
+	current		= green bold
+	local		= blue
+	remote		= yellow
 
 [alias]
 	l			= log -n20
 	s			= status
 	a			= add
 	c			= commit --verbose
+	cb			= checkout -b
 	p			= push
 	psu			= push --set-upstream origin
 	g			= grep -np --break --heading
 	pu			= pull
-	pray			= blame
-	edit 			= !$EDITOR $(git status --short | awk '$1 ~ /^M|A|U/ {print $2}' )
+	edit 		= !$EDITOR $(git status --short | awk '$1 ~ /^M|A|U/ {print $2}' )
 	lo 			= log --graph --pretty=format:'%C(auto,red)%h%C(auto,reset) -%C(auto)%d %C(auto,reset)%s %C(auto,blue)<%an> %C(auto,reset)%C(auto,cyan)(%ad)%C(auto,reset)' --abbrev-commit --date=relative
 
 [merge]
 	tool		= vimdiff
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+	clean		= git-lfs clean %f
+	smudge		= git-lfs smudge %f
+	required	= true
