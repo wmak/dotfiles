@@ -3,56 +3,32 @@ bindkey -e # LITERALLY MAGIC NO CLUE WHY PUTTING THIS AT THE BOTTOM FUCKS SHIT U
 export HISTFILE=$HOME/.zsh_history
 export SAVEHIST=2048
 export HISTSIZE=2048
-export PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 export PYTHONSTARTUP=$HOME/dotfiles/pythonstartup.py
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
 
 # Aliases {{{
 if [ -x /usr/bin/dircolors ]; then
-	alias ls="ls -h --color=auto"
-	alias dir="dir -h --color=auto"
-	alias grep='grep --color=auto'
+    alias ls="ls -h --color=auto"
+    alias dir="dir -h --color=auto"
+    alias grep='grep --color=auto'
 fi
-alias topmon="xrandr --output DP1 --auto --above LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
-alias leftmon="xrandr --output DP1 --auto --left-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
-alias rightmon="xrandr --output DP1 --auto --right-of LVDS1 && sh $HOME/.fehbg && xset dpms force off ;"
-alias 'wakethefuckup╯(´Д´)╯彡┻━┻'="xset dpms force off ;"
-alias offmon="xrandr --output DP1 --off"
 alias reload-zsh=". $HOME/.zshrc"
-alias Osiris="ssh 192.168.0.40"
 alias murder="kill -9"
 alias die="kill -15"
-alias fuckinginternet="wicd-curses"
-alias cleanup="sudo pacman -Sc && sudo pacman-optimize && sync"
-alias pdf="texi2pdf --build-dir=.t2d"
 alias g="git"
-alias emacs="emacs -nw"
-alias anaconda-up="export PATH=$HOME/anaconda/bin:$PATH && export VIRTUAL_ENV=Anaconda"
+alias vi="nvim"
+alias vif="vi \$(fzf)"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
-alias uppolaris="cd ~/polaris/provisioning; vagrant up web db_primary"
-alias wopolaris="ssh vagrant@33.0.0.10"
-alias rspolaris="ssh vagrant@33.0.0.10 'zsh -ic rspolaris'"
-alias woglingo="ssh ubuntu@34.0.0.10"
-alias rsglingo="ssh ubuntu@34.0.0.10 'zsh -ic rsglingo'"
-alias pshell="cd $HOME/polaris/provisioning && vagrant ssh web -- -t 'zsh -ic pshell'"
-alias vagrantsshdb="cd $HOME/polaris/provisioning && vagrant ssh db_primary"
-export FULL_NAME='William Mak'
-alias prodshell="ssh webdev@pweb1 -t \"bash -ic 'export FULL_NAME=\\\"William Mak\\\" && pshell'\""
-alias pweb="mosh webdev@pweb1 -- bash -ic 'tmux a -t wmak'"
-alias pwebssh="ssh webdev@pweb1 -t \"bash -ic 'tmux a -t wmak'\""
 alias pyclean="find . -name '*.pyc' -delete"
 alias ip="ipython2"
-alias opsys="$HOME/polaris/polaris/opsys.sh"
-alias polaris="$HOME/polaris/polaris/opsys.sh polaris"
-alias lumos="$HOME/polaris/polaris/opsys.sh lumos"
-alias glingo="$HOME/polaris/polaris/opsys.sh glingo"
 
 print_info () {
 	printf "\e[1;33m$1\n\e[1;0m"
@@ -90,6 +66,7 @@ function ltest(){
 
     # Store the intial timestamp for the file
     if [ -x /usr/local/bin/gdate ]; then
+	# On macosx `brew install coreutils` so this works
         alias timecmd=gdate
     else
         alias timecmd=date
@@ -128,7 +105,7 @@ function workon(){
 # autoloads {{{
 autoload -U colors && colors
 autoload -U compinit && compinit -i
-zmodload -i zsh/complist
+# zmodload -i zsh/complist
 # }}}
 
 # Keybinding {{{
@@ -252,7 +229,7 @@ host_name=$HOST
 
 if [ $HOST = "Rhea" ]; then
     ord=199
-elif [ $HOST = "GTOR-03013" ]; then
+elif [ $HOST = "Williams-MacBook-Pro-with-2-Thunderbolt-3-ports-2019" ]; then
     host_name='WorkMac'
     ord=171
 fi
@@ -286,14 +263,8 @@ precmd() {
 
 # Plugins {{{
     source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    # Extra stuff for okta
-    # #OktaAWSCLI
-    if [[ -f "$HOME/.okta/bash_functions" ]]; then
-	. "$HOME/.okta/bash_functions"
-    fi
-    if [[ -d "$HOME/.okta/bin" && ":$PATH:" != *":$HOME/.okta/bin:"* ]]; then
-	PATH="$HOME/.okta/bin:$PATH"
-    fi
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 #}}}
 
 # dircolors config. {{{
@@ -312,3 +283,9 @@ fi
 # Setup ssh agent
 ssh-agent -s > /dev/null
 ssh-add 2> /dev/null
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_BASE="$HOME/.fzf"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
