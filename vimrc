@@ -17,7 +17,6 @@ Plugin 'wmak/fairyfloss.vim'
 Plugin 'yggdroot/indentline'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mxw/vim-jsx'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'sheerun/vim-polyglot'
@@ -69,9 +68,10 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " ale
 let g:ale_linters = {
-\   'python': ['flake8'],
+\   'python': ['black'],
 \   'javascript': ['eslint'],
 \}
+let g:ale_completion_tsserver_autoimport = 1
 
 " speed up buffers?
 augroup EditVim
@@ -143,7 +143,7 @@ let mapleader           = ','
 set hlsearch
 
 " When typing a search immediately show immediately where the match is
-set incsearch
+" set incsearch
 
 " recognize that md is markdown not modula
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -197,6 +197,8 @@ set t_ut=
 colorscheme fairyfloss
 set termguicolors
 hi Normal ctermbg=NONE
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"

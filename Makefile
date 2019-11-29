@@ -1,8 +1,7 @@
 DIR=$(HOME)/dotfiles
 
-polaris: symlinks copy apt-get vim vim-setup zsh zsh-polaris node
-glingo: symlinks copy apt-get vim vim-setup zsh zsh-glingo
 deb: symlinks copy apt-get vim vim-setup zsh python3
+mac: symlinks copy neovim
 docker: symlinks copy
 
 symlinks:
@@ -20,6 +19,11 @@ copy:
 	@cp -fH $(DIR)/ipython_config.py $(HOME)/.ipython/profile_default/ipython_config.py
 	@echo "export LC_ALL=en_US.UTF-8" >> $(HOME)/.zshrc
 	@echo "export LANG=en_US.UTF-8" >> $(HOME)/.zshrc
+
+neovim:
+#	@brew install neovim fzf
+	@ln -sf $(DIR)/nvim $(HOME)/.config/nvim
+	@curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 apt-get:
 	sudo apt-get -y install software-properties-common python-software-properties
@@ -87,29 +91,3 @@ zsh-python3: copy
 	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $(HOME)/.zshrc
 	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
 	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
-
-zsh-polaris: copy
-	@echo "" >> $(HOME)/.zshrc
-	@echo "# Polaris specific settings" >> $(HOME)/.zshrc
-	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python" >> $(HOME)/.zshrc
-	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
-	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
-	@echo "export PYTHONPATH=:/home/webdev/websites/polaris/pysrc/apps:/home/webdev/websites/polaris/pysrc/apps/external:/home/webdev/websites/polaris/pysrc/extra_settings" >> $(HOME)/.zshrc
-	@echo "export PYTHONSTARTUP=/home/webdev/websites/polaris/scripts/shell_import.py" >> $(HOME)/.zshrc
-	@echo "alias wopolaris='workon polaris;cd /home/webdev/websites/polaris/pysrc'" >> $(HOME)/.zshrc
-	@echo "alias pshell='workon polaris;cd /home/webdev/websites/polaris/pysrc;python ./manage.py shell'" >> $(HOME)/.zshrc
-	@echo "alias rspolaris='workon polaris;sudo /etc/init.d/apache2 restart;python /home/webdev/websites/polaris/pysrc/manage.py runserver_plus'" >> $(HOME)/.zshrc
-	@echo "wopolaris" >> $(HOME)/.zshrc
-
-zsh-glingo: copy
-	@echo "" >> $(HOME)/.zshrc
-	@echo "# Polaris specific settings" >> $(HOME)/.zshrc
-	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python" >> $(HOME)/.zshrc
-	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
-	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
-	@echo "export PYTHONPATH=:/home/ubuntu/glingo/glingo/apps:/home/ubuntu/glingo" >> $(HOME)/.zshrc
-	@echo "export PYTHONSTARTUP=/home/ubuntu/glingo/scripts/shell_import.py" >> $(HOME)/.zshrc
-	@echo "alias woglingo='workon glingo;cd /home/ubuntu/glingo/glingo'" >> $(HOME)/.zshrc
-	@echo "alias pshell='woglingo; python ./manage.py shell'" >> $(HOME)/.zshrc
-	@echo "alias rsglingo='woglingo; sudo service nginx restart;./manage.py runserver_plus'" >> $(HOME)/.zshrc
-	@echo "woglingo" >> $(HOME)/.zshrc

@@ -18,7 +18,7 @@
 	insteadOf	= gitlab
 
 [core]
-	editor		= "vim"
+	editor		= "nvim"
 	excludesfile= "~/.gitignore"
 
 [color]
