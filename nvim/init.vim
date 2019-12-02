@@ -16,6 +16,10 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug '/usr/local/opt/fzf'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" For Denite features
+Plug 'Shougo/denite.nvim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
