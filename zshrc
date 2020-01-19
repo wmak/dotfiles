@@ -9,6 +9,8 @@ export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 export PYTHONSTARTUP=$HOME/dotfiles/pythonstartup.py
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools
+
 
 # Python
 export WORKON_HOME=$HOME/.virtualenvs
@@ -24,18 +26,21 @@ alias murder="kill -9"
 alias die="kill -15"
 alias g="git"
 alias vi="nvim"
+alias vim="nvim"
 alias vif="vi \$(fzf)"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
 alias pyclean="find . -name '*.pyc' -delete"
 alias ip="ipython2"
+alias testsentry="cd $HOME/development/getsentry/; workon sentry; getsentry devservices down && getsentry devservices up --project test"
+alias done-result="echo 'done' > ~/.result"
 
 print_info () {
-	printf "\e[1;33m$1\n\e[1;0m"
+    printf "\e[1;33m$1\n\e[1;0m"
 }
 
 print_error() {
-	printf "\e[1;31m$1\n\e[1;0m"
+    printf "\e[1;31m$1\n\e[1;0m"
 }
 
 function ltest(){
@@ -67,9 +72,9 @@ function ltest(){
     # Store the intial timestamp for the file
     if [ -x /usr/local/bin/gdate ]; then
 	# On macosx `brew install coreutils` so this works
-        alias timecmd=gdate
+	alias timecmd=gdate
     else
-        alias timecmd=date
+	alias timecmd=date
     fi
     timestamp=`timecmd +%s -r $file`
 
@@ -91,13 +96,13 @@ function lptest() {
 }
 
 function workon(){
-	if [ -f $HOME/.workon/$@ ]; then
-		printf "You're now working on %b\n" $@
-		source $HOME/.workon/$@
-	else
-		source /usr/local/bin/virtualenvwrapper.sh
-		workon $@
-	fi
+    if [ -f $HOME/.workon/$@ ]; then
+	printf "You're now working on %b\n" $@
+	source $HOME/.workon/$@
+    else
+	source /usr/local/bin/virtualenvwrapper.sh
+	workon $@
+    fi
 }
 
 # }}}
@@ -105,7 +110,6 @@ function workon(){
 # autoloads {{{
 autoload -U colors && colors
 autoload -U compinit && compinit -i
-# zmodload -i zsh/complist
 # }}}
 
 # Keybinding {{{
@@ -124,27 +128,12 @@ down-line-or-local-history() {
 }
 zle -N down-line-or-local-history
 
-# Adding command editor
-autoload -z edit-command-line
-bindkey -M vicmd v edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
-
 key[Home]=[1~
 key[End]=[4~
 key[Insert]=${terminfo[kich1]}
 key[Delete]=${terminfo[kdch1]}
 
-# setup key accordingly
-bindkey     "${key[Home]}"      beginning-of-line
-bindkey     "${key[End]}"       end-of-line
-
-bindkey     "${key[Insert]}"    overwrite-mode
-bindkey     "${key[Delete]}"    delete-char
-
-bindkey		"${key[Up]}"		up-line-or-local-history()
-bindkey		"${key[Down]}"		down-line-or-local-history()
-# }}}
+bindkey		"${key[Delete]}"	delete-char
 
 # Options {{{
 	# Completion {{{
@@ -174,54 +163,20 @@ bindkey		"${key[Down]}"		down-line-or-local-history()
 	# }}}
 # }}}
 
-# zstyles {{{
-# That good ol' pretty autocomplete
-zstyle ':completion:*' \
-	        matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-zstyle ':completion:*' list-colors ''
-
-zstyle ':completion:*:*:*:*:*' menu select
-
-zstyle ':completion:*:*:kill:*:processes' \
-	        list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-
-zstyle ':completion:*:*:*:*:processes' \
-	        command "ps -u$USER -o pid,user,comm -w -w"
-zstyle ':completion:*:cd:*' \
-	        tag-order local-directories directory-stack path-directories
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path ${HOME}/.cache/zsh
-zstyle ':completion:*:*:*:users' ignored-patterns \
-	        avahi bin daemon dbus ftp git http mail mpd mysql nobody ntp \
-		        polkitd postfix postgres root rtkit transmission usbmux uuidd
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' max-exports 3
-zstyle ':vcs_info:git*' check-for-changes true
-zstyle ':vcs_info:git*' actionformats '(%b|%a) ' '%u%c' '%s'
-zstyle ':vcs_info:git*' formats '(%b)' '%u%c' '%s'
-zstyle ':vcs_info:' enable git
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-# }}}
-
 # Prompt {{{
-# avoid weirdness with untracked items
-+vi-git-untracked() {
-	git rev-parse --is-inside-work-tree &> /dev/null || return;
-	git status --porcelain | grep '??' &> /dev/null || return;
-	hook_com[unstaged]+='T'
-}
 
 function git_prompt_info() {
-	branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-	if [ $? -eq 0 ];
-	then
-	    diff=$(git diff --no-ext-diff --quiet --exit-code)
-	    [[ $? -eq 1 ]] \
-		    && echo -n "%{$fg[red]%}" \
-		    || echo -n "%{$fg[blue]%}"
-	    echo "("${branch}")%{$reset_color%}"
-	fi
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    if [ $? -eq 0 ];
+    then
+	diff=$(git diff --no-ext-diff --quiet --exit-code)
+	[[ $? -eq 1 ]] \
+	    && echo -n "%{$fg[red]%}" \
+	    || echo -n "%{$fg[blue]%}"
+		    echo "("${branch}")%{$reset_color%}"
+    else
+	echo "()"
+    fi
 }
 
 ord=`printf '%d' "'$HOST"`
@@ -229,33 +184,33 @@ host_name=$HOST
 
 if [ $HOST = "Rhea" ]; then
     ord=199
-elif [ $HOST = "Williams-MacBook-Pro-with-2-Thunderbolt-3-ports-2019" ]; then
+elif [ $HOST = "Williams-MacBook-Pro.local" ]; then
     host_name='WorkMac'
-    ord=171
+    ord=63
 fi
 
 function virtualenv_info() {
     [[ -n $VIRTUAL_ENV ]] && 
-    echo -n "%{"%F{$ord}"%}──Ⅽ%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{"%F{$ord}"%}Ↄ"
+	echo -n "%{"%F{$ord}"%}(%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{"%F{$ord}"%})"
 }
 
 precmd() {
-    PROMPT=%F{$ord}"╭───Ⅽ"
+    PROMPT=%F{$ord}"("
+    PROMPT+="%{$fg[blue]%}%3d"
+    PROMPT+=%F{$ord}")("
     PROMPT+="%{$fg[green]%}${USER}"
     PROMPT+="%{$fg[grey]%}%B@%b"
     PROMPT+="%{$fg[yellow]%}${host_name}"
-    PROMPT+=%F{$ord}"Ↄ──Ⅽ"
-    PROMPT+="%{$fg[blue]%}%2d"
-    PROMPT+=%F{$ord}"Ↄ──Ⅽ"
+    PROMPT+=%F{$ord}")("
     PROMPT+="%{$fg[cyan]%}%T"
-    PROMPT+=%F{$ord}"Ↄ──Ⅽ"
+    PROMPT+=%F{$ord}")("
     PROMPT+=%F{$ord}"%?"
-    PROMPT+=%F{$ord}"Ↄ"
+    PROMPT+=%F{$ord}")"
     PROMPT+=$(virtualenv_info)
-    PROMPT+=$'\n'"╰─‹"
+    PROMPT+=$'\n'""
     PROMPT+="%{$reset_color%}%b"
     PROMPT+=$(git_prompt_info)
-    PROMPT+=%F{$ord}"› "
+    PROMPT+=%F{$ord}" "
     PROMPT+=%F{255}%b
 }
 
@@ -263,22 +218,19 @@ precmd() {
 
 # Plugins {{{
     source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/local/opt/nvm/nvm.sh
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 #}}}
 
 # dircolors config. {{{
-if whence dircolors >/dev/null; then
+if whence dircolors >/dev/null; then # non-osx
     eval `dircolors -b $HOME/dotfiles/dircolors.conf`
     zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 else
     export CLICOLOR=1
-    zstyle ':completion:*:default' list-colors ''
 fi	
 #}}}
-
-# If there's a development folder cd to it.
-[[ -e $HOME/development ]] && cd $HOME/development
 
 # Setup ssh agent
 ssh-agent -s > /dev/null

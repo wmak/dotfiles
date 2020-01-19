@@ -1,29 +1,42 @@
 DIR=$(HOME)/dotfiles
 
 deb: symlinks copy apt-get vim vim-setup zsh python3
-mac: symlinks copy neovim
+mac: symlinks copy homebrew keybindings neovim
 docker: symlinks copy
+.PHONY: keybindings
 
 symlinks:
 	@ln -sf $(DIR)/gitconfig $(HOME)/.gitconfig
 	@ln -sf $(DIR)/gitignore $(HOME)/.gitignore
-	@ln -sf $(DIR)/vimrc $(HOME)/.vimrc
 	@mkdir -p $(HOME)/.config
 	@ln -sf $(DIR)/flake8 $(HOME)/.config/flake8
+	@ln -sf $(DIR)/zshrc $(HOME)/.zshrc
 
 copy:
-	@cp -fH $(DIR)/zshrc $(HOME)/.zshrc
 	@cp -fH $(DIR)/tmux.conf $(HOME)/.tmux.conf
 	@cp -fH $(DIR)/Xresources $(HOME)/.Xresources
 	@mkdir -p $(HOME)/.ipython/profile_default
 	@cp -fH $(DIR)/ipython_config.py $(HOME)/.ipython/profile_default/ipython_config.py
-	@echo "export LC_ALL=en_US.UTF-8" >> $(HOME)/.zshrc
-	@echo "export LANG=en_US.UTF-8" >> $(HOME)/.zshrc
 
-neovim:
-#	@brew install neovim fzf
+homebrew:
+	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
+	brew install tmux htop
+	brew cask install ngrok
+
+fzf:
+	brew install fzf
+	/usr/local/opt/fzf/install --no-bash --no-fish
+
+keybindings:
+	@ln -sf $(DIR)/KeyBindings $(HOME)/Library/KeyBindings
+
+neovim: node python3
+	@brew install neovim
+	@pip3 install --user neovim
+	@npm install -g neovim typescript
 	@ln -sf $(DIR)/nvim $(HOME)/.config/nvim
 	@curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	@nvim +PlugInstall +qall
 
 apt-get:
 	sudo apt-get -y install software-properties-common python-software-properties
@@ -34,9 +47,10 @@ apt-get:
 	
 
 node:
-	sudo apt-add-repository -y ppa:chris-lea/node.js
-	sudo apt-get update
-	sudo npm install -g jshint nodejs
+	brew install nvm
+	source /usr/local/opt/nvm/nvm.sh \
+	export NVM_DIR="$(HOME)/.nvm" \
+	nvm install 10.16.3
 
 vim:
 	if [ ! -d $(HOME)/.vimsource ]; then \
@@ -81,13 +95,5 @@ vim-setup: symlinks
 zsh: symlinks
 	sudo chsh -s /bin/zsh $(USER)
 
-python3: zsh-python
-	sudo apt-get install python3-pip
-	@echo "alias pip=\"pip3\"" >> $(HOME)/.zshrc
-
-zsh-python3: copy
-	@echo "" >> $(HOME)/.zshrc
-	@echo "# Python3 specific settings" >> $(HOME)/.zshrc
-	@echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> $(HOME)/.zshrc
-	@echo "export PIP_RESPECT_VIRTUALEV=true" >> $(HOME)/.zshrc
-	@echo "export WORKON_HOME=/var/virtualenvs/" >> $(HOME)/.zshrc
+python3:
+	brew install python3

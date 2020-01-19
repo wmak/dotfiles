@@ -5,6 +5,8 @@ Plug 'dense-analysis/ale'
 Plug 'yggdroot/indentline'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
 Plug 'janko-m/vim-test'
 Plug 'wmak/fairyfloss.vim'
 Plug 'bling/vim-bufferline'
@@ -38,6 +40,7 @@ let NERDTreeShowLineNumbers=1
 " highlight 121 and onward so 120 is the last valid column
 set textwidth=120
 autocmd bufreadpre *.html setlocal textwidth=0
+autocmd Filetype javascriptreact setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 set colorcolumn=+1,+31
 
 " switch buffers without saving
@@ -48,7 +51,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_left_alt_sep =''
 let g:airline_section_b = ''
 let g:airline_section_x = ''
-let g:airline_section_y = ''
+let g:airline_section_y = airline#section#create(['%l'])
 let g:airline_section_z = airline#section#create(['%c'])
 let g:airline_extensions = ['bufferline']
 
@@ -56,7 +59,7 @@ let g:airline_extensions = ['bufferline']
 set number
 
 let g:ale_linters = {
-\   'python': ['black'],
+\   'python': ['flake8'],
 \   'javascript': ['eslint'],
 \}
 
@@ -96,6 +99,10 @@ noremap <S-Up> <C-W>k
 noremap <S-Down> <C-W>j
 noremap <S-Left> <C-W>h
 noremap <S-Right> <C-W>l
+
+" buffer management
+let mapleader           = ' '
+nnoremap <leader>b :ls<cr>:b<space>
 
 " Ignore swp and pyc files
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
