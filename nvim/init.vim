@@ -13,11 +13,14 @@ Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
+" Git
 Plug 'tpope/vim-fugitive'
+Plug 'APZelos/blamer.nvim'
 Plug 'tmhedberg/SimpylFold'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 " For Denite features
@@ -40,7 +43,7 @@ let NERDTreeShowLineNumbers=1
 " highlight 121 and onward so 120 is the last valid column
 set textwidth=120
 autocmd bufreadpre *.html setlocal textwidth=0
-autocmd Filetype javascriptreact setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+autocmd Filetype javascript setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 set colorcolumn=+1,+31
 
 " switch buffers without saving
@@ -84,8 +87,24 @@ set pastetoggle=<F2>
 " remap <F3> to show whitespace
 nnoremap <F3> :set list!<cr>
 
-" TestNearest
-nnoremap <F4> :w<cr>:TestNearest<cr>
+" Blamer
+let g:blamer_enabled = 1
+let g:blamer_delay = 100
+let g:blamer_prefix = '        Δ'
+let g:blamer_template = ' <author> <author-time> <summary>'
+let g:blamer_relative_time = 1
+
+nnoremap <C-O> :Files<cr>
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <C-I> :RG<cr>
 
 " Easier entry to commmand-mode
 noremap ; :
@@ -128,3 +147,4 @@ set t_ut=
 colorscheme fairyfloss
 set termguicolors
 hi Normal ctermbg=NONE
+hi Blamer guifg=lightgrey
