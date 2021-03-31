@@ -24,3 +24,13 @@ try:
     _ip.prompts = IPythonPrompt(_ip)
 except Exception:
     pass
+
+
+try:
+    from sentry.models import Organization, Project, User
+    import datetime
+    me = User.objects.first()
+    today = datetime.datetime.today()
+    print('Imported sentry.models.Organization, Project and User')
+except Exception:
+    pass

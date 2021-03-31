@@ -38,3 +38,7 @@ venv
 # osx #
 #######
 .DS_Store
+.rgignore
+django.po
+src/sentry/locale/**
+src/sentry/locale/sl/LC_MESSAGES/django.po

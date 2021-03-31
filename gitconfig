@@ -35,6 +35,7 @@
 	a			= add
 	c			= commit --verbose
 	cb			= checkout -b
+	co			= checkout
 	p			= push
 	psu			= push --set-upstream origin
 	g			= grep -np --break --heading

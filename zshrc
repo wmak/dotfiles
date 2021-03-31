@@ -5,7 +5,7 @@ export SAVEHIST=2048
 export HISTSIZE=2048
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERM="xterm-256color"
+export TERM="screen-256color"
 export LANG=en_US.UTF-8
 export PYTHONSTARTUP=$HOME/dotfiles/pythonstartup.py
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
@@ -25,6 +25,7 @@ alias reload-zsh=". $HOME/.zshrc"
 alias murder="kill -9"
 alias die="kill -15"
 alias g="git"
+alias G="g g"
 alias vi="nvim"
 alias vim="nvim"
 alias vif="vi \$(fzf)"
@@ -32,7 +33,10 @@ alias ':q'="exit"
 alias psgrep="ps aux | grep"
 alias pyclean="find . -name '*.pyc' -delete"
 alias ip="ipython2"
-alias testsentry="cd $HOME/development/getsentry/; workon sentry; getsentry devservices down && getsentry devservices up --project test"
+alias wotests="cd $HOME/development/getsentry/; getsentry devservices down && getsentry devservices up --project test; cd $HOME/development/sentry"
+alias cdgetsentry="cd $HOME/development/getsentry"
+alias sentryservices="cdgetsentry && getsentry devservices"
+alias woserver="cd $HOME/development/getsentry/; getsentry devservices down --project test && getsentry devservices up && sleep 60 && done-result && getsentry devserver --workers"
 alias done-result="echo 'done' > ~/.result"
 
 print_info () {
@@ -41,6 +45,30 @@ print_info () {
 
 print_error() {
     printf "\e[1;31m$1\n\e[1;0m"
+}
+
+function wo() {
+	current=`cat $HOME/.sentry-mode`
+	if [ "$1" = "server" ]; then
+		if [ "$current" = "test" ]; then
+			print_info "Switching out of $current"
+			sentryservices down --project test
+			sentryservices up
+			echo "server" > $HOME/.sentry-mode
+		fi
+		print_info "Starting server"
+		cdgetsentry && getsentry devserver --workers --pretty
+	elif [ "$1" = "tests" ]; then
+		print_info "Switching to tests"
+		if [ "$current" = "server" ]; then
+			docker exec -it sentry_redis redis-cli flushall
+			print_info "Switching out of $current"
+			sentryservices down
+			sentryservices up --project test
+			echo "test" > $HOME/.sentry-mode
+		fi
+		cd $HOME/development/sentry
+	fi
 }
 
 function ltest(){
@@ -92,7 +120,7 @@ function ltest(){
     done
 }
 function lptest() {
-    ltest $1 ipython2 $1
+    ltest $1 pytest $1
 }
 
 function workon(){
@@ -241,3 +269,9 @@ export LANG=en_US.UTF-8
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_BASE="$HOME/.fzf"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(pyenv init -)"
+
+# direnv
+eval "$(direnv hook zsh)"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

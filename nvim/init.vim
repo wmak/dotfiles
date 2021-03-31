@@ -1,4 +1,5 @@
 " Plugins will be downloaded under the specified directory.
+let g:polyglot_disabled = ['markdown']
 call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'dense-analysis/ale'
@@ -15,15 +16,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'APZelos/blamer.nvim'
 Plug 'tmhedberg/SimpylFold'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-" For Denite features
 Plug 'Shougo/denite.nvim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -31,10 +30,7 @@ call plug#end()
 " fzf alias
 cnoreabbrev ~~ FZF
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#disable_auto_complete = 1
-inoremap <expr> <C-n>  deoplete#manual_complete()
-let g:deoplete#sources#jedi#enable_typeinfo = 0
+let g:node_host_prog = '~/.volta/tools/image/packages/neovim/4.9.0/bin/cli.js'
 
 " NerdTree
 map <C-a> :NERDTreeToggle<CR>
@@ -44,6 +40,8 @@ let NERDTreeShowLineNumbers=1
 set textwidth=120
 autocmd bufreadpre *.html setlocal textwidth=0
 autocmd Filetype javascript setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+autocmd Filetype javascriptreact setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+autocmd Filetype typescriptreact setlocal tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 set colorcolumn=+1,+31
 
 " switch buffers without saving
@@ -87,16 +85,14 @@ set pastetoggle=<F2>
 " remap <F3> to show whitespace
 nnoremap <F3> :set list!<cr>
 
-" Blamer
-let g:blamer_enabled = 1
-let g:blamer_delay = 100
-let g:blamer_prefix = '        Δ'
-let g:blamer_template = ' <author> <author-time> <summary>'
-let g:blamer_relative_time = 1
+" TestNearest
+nnoremap <F4> :w<cr>:TestNearest<cr>
+let test#python#pytest#options = '--disable-pytest-warnings'
 
-nnoremap <C-O> :Files<cr>
+" Open fzf
+nnoremap <C-O> :GFiles<cr>
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let command_fmt = 'rg --ignore-file ~/.gitignore --column --line-number --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
@@ -122,6 +118,8 @@ noremap <S-Right> <C-W>l
 " buffer management
 let mapleader           = ' '
 nnoremap <leader>b :ls<cr>:b<space>
+
+nnoremap <leader>r :RGc
 
 " Ignore swp and pyc files
 let g:netrw_list_hide= '.*\.swp$,.*\.pyc'
