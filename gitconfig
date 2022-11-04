@@ -32,6 +32,8 @@
 [alias]
 	l			= log -n20
 	s			= status
+	st		= stash -m
+	stl		= stash list
 	a			= add
 	c			= commit --verbose
 	cb			= checkout -b

@@ -8,7 +8,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
-Plug 'janko-m/vim-test'
+Plug 'vim-test/vim-test'
 Plug 'wmak/fairyfloss.vim'
 Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
@@ -30,7 +30,7 @@ call plug#end()
 " fzf alias
 cnoreabbrev ~~ FZF
 
-let g:node_host_prog = '~/.volta/tools/image/packages/neovim/4.9.0/bin/cli.js'
+let g:node_host_prog = system('volta which neovim-node-host | tr -d "\n"')
 
 " NerdTree
 map <C-a> :NERDTreeToggle<CR>
@@ -88,6 +88,9 @@ nnoremap <F3> :set list!<cr>
 " TestNearest
 nnoremap <F4> :w<cr>:TestNearest<cr>
 let test#python#pytest#options = '--disable-pytest-warnings'
+if has('nvim')
+  tmap <C-k> <C-\><C-n>
+endif
 
 " Open fzf
 nnoremap <C-O> :GFiles<cr>
@@ -98,6 +101,9 @@ function! RipgrepFzf(query, fullscreen)
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
+
+" Don't yank when you paste
+xnoremap p pgvy
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <C-I> :RG<cr>

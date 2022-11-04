@@ -19,7 +19,7 @@ copy:
 	@cp -fH $(DIR)/ipython_config.py $(HOME)/.ipython/profile_default/ipython_config.py
 
 homebrew:
-	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
+	@/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	brew install tmux htop
 	brew cask install ngrok
 

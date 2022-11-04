@@ -21,7 +21,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias dir="dir -h --color=auto"
     alias grep='grep --color=auto'
 fi
-alias reload-zsh=". $HOME/.zshrc"
+alias reload-zsh=". $HOME/.zshrc; comeback"
 alias murder="kill -9"
 alias die="kill -15"
 alias g="git"
@@ -38,6 +38,7 @@ alias cdgetsentry="cd $HOME/development/getsentry"
 alias sentryservices="cdgetsentry && getsentry devservices"
 alias woserver="cd $HOME/development/getsentry/; getsentry devservices down --project test && getsentry devservices up && sleep 60 && done-result && getsentry devserver --workers"
 alias done-result="echo 'done' > ~/.result"
+alias comeback="cd ..; cd -"
 
 print_info () {
     printf "\e[1;33m$1\n\e[1;0m"
@@ -45,6 +46,12 @@ print_info () {
 
 print_error() {
     printf "\e[1;31m$1\n\e[1;0m"
+}
+function notify() {
+	osascript -e 'display notification "Your cli task is done!" with title "Task Complete!" sound name "Sonar"'
+}
+function ptw() {
+	watchmedo shell-command --patterns="*.py" --drop --ignore-directories --recursive . -c "$1; osascript -e 'display notification \"Your cli task is done!\" with title \"Task Complete!\" sound name \"Sonar\"'"
 }
 
 function wo() {
@@ -216,6 +223,8 @@ elif [ $HOST = "Williams-MacBook-Pro.local" ]; then
     host_name='WorkMac'
     ord=63
 fi
+	host_name='WorkMac'
+	ord=63
 
 function virtualenv_info() {
     [[ -n $VIRTUAL_ENV ]] && 
