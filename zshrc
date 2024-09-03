@@ -32,7 +32,6 @@ alias vif="vi \$(fzf)"
 alias ':q'="exit"
 alias psgrep="ps aux | grep"
 alias pyclean="find . -name '*.pyc' -delete"
-alias ip="ipython2"
 alias wotests="cd $HOME/development/getsentry/; getsentry devservices down && getsentry devservices up --project test; cd $HOME/development/sentry"
 alias cdgetsentry="cd $HOME/development/getsentry"
 alias sentryservices="cdgetsentry && getsentry devservices"
@@ -223,8 +222,6 @@ elif [ $HOST = "Williams-MacBook-Pro.local" ]; then
     host_name='WorkMac'
     ord=63
 fi
-	host_name='WorkMac'
-	ord=63
 
 function virtualenv_info() {
     [[ -n $VIRTUAL_ENV ]] && 
@@ -253,12 +250,6 @@ precmd() {
 
 #}}}
 
-# Plugins {{{
-    source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/local/opt/nvm/nvm.sh
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-#}}}
 
 # dircolors config. {{{
 if whence dircolors >/dev/null; then # non-osx
@@ -275,12 +266,4 @@ ssh-add 2> /dev/null
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export FZF_COMPLETION_TRIGGER='~~'
-export FZF_BASE="$HOME/.fzf"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(pyenv init -)"
-
-# direnv
-eval "$(direnv hook zsh)"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+source /usr/share/doc/fzf/examples/key-bindings.zsh
