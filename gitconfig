@@ -7,6 +7,7 @@
 
 [push]
 	default		= simple
+	autoSetupRemote = true
 
 [url "git@github.com"]
 	insteadOf	= github
@@ -38,6 +39,7 @@
 	c			= commit --verbose
 	cb			= checkout -b
 	co			= checkout
+	com			= "!f() { git checkout master 2>/dev/null || git checkout main; }; f"
 	p			= push
 	psu			= push --set-upstream origin
 	g			= grep -np --break --heading

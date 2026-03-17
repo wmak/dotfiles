@@ -5,11 +5,11 @@ export SAVEHIST=2048
 export HISTSIZE=2048
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERM="screen-256color"
+export TERM="xterm-256color"
 export LANG=en_US.UTF-8
 export PYTHONSTARTUP=$HOME/dotfiles/pythonstartup.py
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/smlnj/bin:/opt/android-sdk/tools:/Users/wmak/Library/Python/3.11/bin
 
 
 # Python
@@ -38,6 +38,7 @@ alias sentryservices="cdgetsentry && getsentry devservices"
 alias woserver="cd $HOME/development/getsentry/; getsentry devservices down --project test && getsentry devservices up && sleep 60 && done-result && getsentry devserver --workers"
 alias done-result="echo 'done' > ~/.result"
 alias comeback="cd ..; cd -"
+alias smokeqb="pytest -m querybuilder tests/snuba tests/sentry/search"
 
 print_info () {
     printf "\e[1;33m$1\n\e[1;0m"
@@ -50,6 +51,7 @@ function notify() {
 	osascript -e 'display notification "Your cli task is done!" with title "Task Complete!" sound name "Sonar"'
 }
 function ptw() {
+	eval $1
 	watchmedo shell-command --patterns="*.py" --drop --ignore-directories --recursive . -c "$1; osascript -e 'display notification \"Your cli task is done!\" with title \"Task Complete!\" sound name \"Sonar\"'"
 }
 
@@ -104,7 +106,7 @@ function ltest(){
     fi
 
     # Store the intial timestamp for the file
-    if [ -x /usr/local/bin/gdate ]; then
+    if [ -x /opt/homebrew/bin/gdate ]; then
 	# On macosx `brew install coreutils` so this works
 	alias timecmd=gdate
     else
@@ -228,6 +230,15 @@ function virtualenv_info() {
 	echo -n "%{"%F{$ord}"%}(%{$fg[green]%}%B"`basename $VIRTUAL_ENV`"%{"%F{$ord}"%})"
 }
 
+function devservices() {
+    colima status
+    if [ $? -eq 1 ];
+    then
+	colima start
+    fi
+    $HOME/development/sentry/.venv/bin/devservices $@
+}
+
 precmd() {
     PROMPT=%F{$ord}"("
     PROMPT+="%{$fg[blue]%}%3d"
@@ -250,6 +261,14 @@ precmd() {
 
 #}}}
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init --path)"
+
+# Plugins {{{
+    source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    export NVM_DIR="$HOME/.nvm"
+
+#}}}
 
 # dircolors config. {{{
 if whence dircolors >/dev/null; then # non-osx
@@ -266,4 +285,11 @@ ssh-add 2> /dev/null
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+export FZF_COMPLETION_TRIGGER='~~'
+source <(fzf --zsh)
+
+# direnv
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+eval "$(direnv hook zsh)"
+export PATH="/Users/wmak/.local/share/sentry-devenv/bin:$PATH"

@@ -30,10 +30,10 @@ fzf:
 keybindings:
 	@ln -sf $(DIR)/KeyBindings $(HOME)/Library/KeyBindings
 
-neovim: node python3
+neovim: python3
 	@brew install neovim
-	@pip3 install --user neovim
-	@npm install -g neovim typescript
+	@pip3 install --user neovim jedi-language-server
+	@npm install -g neovim typescript typescript-language-server
 	@ln -sf $(DIR)/nvim $(HOME)/.config/nvim
 	@curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	@nvim +PlugInstall +qall
