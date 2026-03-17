@@ -229,8 +229,8 @@ EOF
 
 " Language Servers
 " require'lspconfig'.tsserver.setup{}
+" vim.lsp.config("jedi_language_server").jedi_language_server.setup{}
 lua << EOF
-require'lspconfig'.jedi_language_server.setup{}
 EOF
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-jedi', 'coc-tslint-plugin']
 

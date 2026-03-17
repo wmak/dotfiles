@@ -220,7 +220,7 @@ host_name=$HOST
 
 if [ $HOST = "Rhea" ]; then
     ord=199
-elif [ $HOST = "Williams-MacBook-Pro.local" ]; then
+elif [ $HOST = "Sentry-io-MacBook-Pro-MD7WYYFJ9L" ]; then
     host_name='WorkMac'
     ord=63
 fi
@@ -262,7 +262,7 @@ precmd() {
 #}}}
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(pyenv init --path)"
+# eval "$(pyenv init --path)"
 
 # Plugins {{{
     source $HOME/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -291,5 +291,5 @@ source <(fzf --zsh)
 # direnv
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-eval "$(direnv hook zsh)"
 export PATH="/Users/wmak/.local/share/sentry-devenv/bin:$PATH"
+eval "$(direnv hook zsh)"

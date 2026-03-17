@@ -11,28 +11,28 @@ symlinks:
 	@mkdir -p $(HOME)/.config
 	@ln -sf $(DIR)/flake8 $(HOME)/.config/flake8
 	@ln -sf $(DIR)/zshrc $(HOME)/.zshrc
+	@ln -sf $(DIR)/wezterm.lua $(HOME)/.wezterm.lua
 
 copy:
 	@cp -fH $(DIR)/tmux.conf $(HOME)/.tmux.conf
 	@cp -fH $(DIR)/Xresources $(HOME)/.Xresources
 	@mkdir -p $(HOME)/.ipython/profile_default
 	@cp -fH $(DIR)/ipython_config.py $(HOME)/.ipython/profile_default/ipython_config.py
+	@cp -fH "$(DIR)/Inconsolata-g for Powerline.otf" /Library/Fonts
 
 homebrew:
-	@/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install tmux htop
-	brew cask install ngrok
-
-fzf:
-	brew install fzf
-	/usr/local/opt/fzf/install --no-bash --no-fish
+	bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	echo >> $(HOME)/.zprofile
+	echo 'eval "$$(/opt/homebrew/bin/brew shellenv zsh)"' >> $(HOME)/.zprofile
+	eval "$$(/opt/homebrew/bin/brew shellenv zsh)"
+	brew install tmux htop fzf ripgrep
 
 keybindings:
 	@ln -sf $(DIR)/KeyBindings $(HOME)/Library/KeyBindings
 
-neovim: python3
-	@brew install neovim
-	@pip3 install --user neovim jedi-language-server
+neovim:
+	@brew install neovim node
+	@pip3 install --user --break-system-packages neovim jedi-language-server
 	@npm install -g neovim typescript typescript-language-server
 	@ln -sf $(DIR)/nvim $(HOME)/.config/nvim
 	@curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -75,9 +75,11 @@ tmux:
 		git clone https://github.com/tmux/tmux.git $(HOME)/.tmuxsource; \
 	fi
 	cd $(HOME)/.tmuxsource && git pull
-	cd $(HOME)/.tmuxsource && sh autogen.sh
+	cd $(HOME)/.tmuxsource && sh ./autogen.sh
 	cd $(HOME)/.tmuxsource && ./configure && make
 	cd $(HOME)/.tmuxsource && sudo make install
+
+tmux-config:
 	if [ ! -d $(HOME)/.tmux/plugins/tpm ]; then \
 		git clone https://github.com/tmux-plugins/tpm $(HOME)/.tmux/plugins/tpm; \
 	fi
